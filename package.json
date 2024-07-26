@@ -4,7 +4,7 @@
   "description": "GitHub Repository Template for Web Development Projects",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "webpack",
     "gh-pages": "git subtree push --prefix dist origin gh-pages && git push"
   },
@@ -12,6 +12,9 @@
   "author": "Amal K",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.24.9",
+    "@babel/preset-env": "^7.24.8",
+    "babel-jest": "^29.7.0",
     "css-loader": "^7.1.2",
     "eslint": "^9.7.0",
     "eslint-config-prettier": "^9.1.0",
