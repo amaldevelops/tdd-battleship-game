@@ -7,28 +7,22 @@ import "./mainStyleSheet.css";
 class ship {
   constructor(shipLength) {
     this.shipLength = shipLength;
-    this.numberOfHits=0;
+    this.numberOfHits = 0;
     this.shipSunk = false;
   }
 
-  hit()
-  {
-    if (!this.shipSunk)
-        {
-            this.numberOfHits += 1;
-        }
-    if (this.numberOfHits>=this.shipLength)
-        {
-            this.shipSunk=true;
-        }
-
+  hit() {
+    if (!this.shipSunk) {
+      this.numberOfHits += 1;
+    }
+    if (this.numberOfHits >= this.shipLength) {
+      this.shipSunk = true;
+    }
   }
 
-  isSunk()
-{
+  isSunk() {
     return this.shipSunk;
-}
-
+  }
 
   shipStatus() {
     this.shipInfoObject = {
