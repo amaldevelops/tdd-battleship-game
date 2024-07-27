@@ -1,7 +1,7 @@
 {
-  "name": "webdevgithubprojecttemplate",
+  "name": "BattleShip game Development using TDD",
   "version": "1.0.0",
-  "description": "GitHub Repository Template for Web Development Projects",
+  "description": "TDD Development of Battleship game",
   "main": "webpack.config.js",
   "scripts": {
     "test": "jest",

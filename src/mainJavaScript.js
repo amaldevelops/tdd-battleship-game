@@ -34,4 +34,25 @@ class ship {
   }
 }
 
-export { ship };
+class Gameboard {
+  constructor() {
+    this.gameBoardSize = {
+      X: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"],
+      Y: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    };
+
+    this.board = this.createBoard();
+  }
+
+  createBoard() {
+    const board = {};
+    for (let i = 0; i <= this.gameBoardSize.X.length; i++) {
+      board[this.gameBoardSize.X[i]] = new Array(
+        this.gameBoardSize.Y.length
+      ).fill(this.gameBoardSize.Y[i]);
+    }
+    return board;
+  }
+}
+
+export { ship, Gameboard };
