@@ -46,10 +46,8 @@ class Gameboard {
 
   createBoard() {
     const board = {};
-    for (let i = 0; i <= this.gameBoardSize.X.length; i++) {
-      board[this.gameBoardSize.X[i]] = new Array(
-        this.gameBoardSize.Y.length
-      ).fill(this.gameBoardSize.Y[i]);
+    for (let i = 0; i < this.gameBoardSize.X.length; i++) {
+      board[this.gameBoardSize.X[i]] = this.gameBoardSize.Y;
     }
     return board;
   }
