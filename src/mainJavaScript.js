@@ -42,31 +42,31 @@ class Gameboard {
     };
 
     this.board = this.createBoard();
-    // this.createdBoard=this.board;
   }
 
   createBoard() {
     const newBoard = {};
     for (let i = 0; i < this.gameBoardSize.X.length; i++) {
-        newBoard[this.gameBoardSize.X[i]] = this.gameBoardSize.Y;
+      newBoard[this.gameBoardSize.X[i]] = [...this.gameBoardSize.Y];
     }
     return newBoard;
   }
 
-  placeShips(ship,cords)
-  {
-    let testBoard=this.board;
-    // this.cords=cords;
-    
-    // this.xStartCords=cords.A;
-    // this.yStartCords=cords.value;
-    // this.shipInstance=ship;
-    // this.shipLength=this.shipInstance.shipLength;
-    testBoard["A"][9]="ship";
-    // testBoard['A'][2]="ship";
-    return testBoard;
-  }
+  placeShips(ship, xStartCords, yStartCords) {
+    this.ship = ship;
+    this.xStartCords = xStartCords;
+    this.yStartCords = yStartCords;
+    console.log(this.yStartCords);
+    // if (!this.ship.shipLength+this.yStartCords>9 || !this.ship.shipLength+this.yStartCords<0)
+    // {
+    //     console.log("Ok to proceed");
+    // }
+    for (let i = 0; i < this.ship.shipLength; i++) {
+      this.board[this.xStartCords][this.yStartCords + i] = this.ship;
+    }
 
+    return this.board;
+  }
 }
 
 export { ship, Gameboard };
