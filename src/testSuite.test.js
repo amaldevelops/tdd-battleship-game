@@ -27,17 +27,17 @@ const newShipSunk = { shipLength: 2, numberOfHits: 2, shipSunk: true };
 // };
 
 const testBoard = {
-    A: [null,null,null,null,null,null,null,null,null,null],
-    B: [null,null,null,null,null,null,null,null,null,null],
-    C: [null,null,null,null,null,null,null,null,null,null],
-    D: [null,null,null,null,null,null,null,null,null,null],
-    E: [null,null,null,null,null,null,null,null,null,null],
-    F: [null,null,null,null,null,null,null,null,null,null],
-    G: [null,null,null,null,null,null,null,null,null,null],
-    H: [null,null,null,null,null,null,null,null,null,null],
-    I: [null,null,null,null,null,null,null,null,null,null],
-    J: [null,null,null,null,null,null,null,null,null,null]
-  };
+  A: [null, null, null, null, null, null, null, null, null, null],
+  B: [null, null, null, null, null, null, null, null, null, null],
+  C: [null, null, null, null, null, null, null, null, null, null],
+  D: [null, null, null, null, null, null, null, null, null, null],
+  E: [null, null, null, null, null, null, null, null, null, null],
+  F: [null, null, null, null, null, null, null, null, null, null],
+  G: [null, null, null, null, null, null, null, null, null, null],
+  H: [null, null, null, null, null, null, null, null, null, null],
+  I: [null, null, null, null, null, null, null, null, null, null],
+  J: [null, null, null, null, null, null, null, null, null, null],
+};
 
 const ship1 = new ship(2);
 const ship2 = new ship(1);
@@ -64,32 +64,32 @@ const ship10 = new ship(1);
 // };
 
 const shipPlacement = {
-    A: [null,ship1,ship1,null,null,null,null,null,null,null],
-    B: [null,null,null,null,null,null,null,null,null,null],
-    C: [null,null,null,null,null,null,null,null,null,null],
-    D: [null,null,null,null,null,null,null,null,null,null],
-    E: [null,null,null,null,null,null,null,null,null,null],
-    F: [null,null,null,null,null,null,null,null,null,null],
-    G: [null,null,null,null,null,null,null,null,null,null],
-    H: [null,null,null,null,null,null,null,null,null,null],
-    I: [null,null,null,null,null,null,null,null,null,null],
-    J: [null,null,null,null,null,null,null,null,null,null]
-  };
+  A: [null, ship1, ship1, null, null, null, null, null, null, null],
+  B: [null, null, null, null, null, null, null, null, null, null],
+  C: [null, null, null, null, null, null, null, null, null, null],
+  D: [null, null, null, null, null, null, null, null, null, null],
+  E: [null, null, null, null, null, null, null, null, null, null],
+  F: [null, null, null, null, null, null, null, null, null, null],
+  G: [null, null, null, null, null, null, null, null, null, null],
+  H: [null, null, null, null, null, null, null, null, null, null],
+  I: [null, null, null, null, null, null, null, null, null, null],
+  J: [null, null, null, null, null, null, null, null, null, null],
+};
 
-test("This test will check for Ship Status when first initialized", () => {
+test("Test 1:This test will check for Ship Status when first initialized", () => {
   expect(newShip.shipStatus()).toStrictEqual(newShipReturnedObject);
 });
 
-test("This test will check whether ship is NOT Sunk", () => {
+test("Test 2:This test will check whether ship is NOT Sunk", () => {
   expect(newShip.isSunk()).toStrictEqual(false);
 });
 
-test("This test will check for Ships Damage after 1 hit", () => {
+test("Test 3:This test will check for Ships Damage after 1 hit", () => {
   newShip.hit();
   expect(newShip.shipStatus()).toStrictEqual(newShipDamage);
 });
 
-test("This test will check for Ships Damage after 2 hits", () => {
+test("Test 4:This test will check for Ships Damage after 2 hits", () => {
   newShip.hit();
   newShip.hit();
   newShip.hit();
@@ -97,19 +97,38 @@ test("This test will check for Ships Damage after 2 hits", () => {
   expect(newShip.shipStatus()).toStrictEqual(newShipSunk);
 });
 
-test("This test will check whether ship is Sunk", () => {
+test("Test 5:This test will check whether ship is Sunk", () => {
   expect(newShip.isSunk()).toStrictEqual(true);
 });
 
-test("This test will check whether GameBoard is created properly", () => {
+test("Test 6:This test will check whether GameBoard is created properly", () => {
   expect(newGameBoard.createBoard()).toStrictEqual(testBoard);
 });
 
-test("This test will check whether ship1 can be placed on the board in specific coordinates of start at {A:1} ship length 2 so placing the ship at A[1],A[2]", () => {
+test("Test 7:This test will check whether ship1 can be placed on the board in specific coordinates of start at {A:1} ship length 2 so placing the ship at A[1],A[2]", () => {
   expect(newGameBoard.placeShips(ship1, "A", 1)).toStrictEqual(shipPlacement);
 });
 
-test("This test will check whether ship3 can be placed on the board in ship2 saved previous coordinates of start at {A:1} ship length 4 so placing the ship at A[1],A[2],A[3],A[4] should give out an error" , () => {
-    expect(newGameBoard.placeShips(ship1, "A", 1)).toStrictEqual("Error location occupied");
-  });
+test("Test 8:This test will check whether ship3 can be placed on the board in ship2 saved previous coordinates of st1e out an error", () => {
+  expect(newGameBoard.placeShips(ship3, "A", 1)).toStrictEqual(
+    "Error location occupied"
+  );
+});
 
+test("Test 9:This test will check whether ship5 can be placed on the board in ship1 saved previous coordinates of start at {A:2} ship length 5 so placing the ship at A[1],A[2],A[3],A[4] should give out an error", () => {
+  expect(newGameBoard.placeShips(ship5, "A", 2)).toStrictEqual(
+    "Error location occupied"
+  );
+});
+
+test("Test 10:This test will check whether ship8 can be placed on the board at {B:7} ship length 4 so by trying to place the ship at B[7],B[8],B[9],B[10] should give out an error as it is out of bounds", () => {
+  expect(newGameBoard.placeShips(ship8, "B", 7)).toStrictEqual(
+    "Error location occupied"
+  );
+});
+
+test("Test 11:This test will check whether ship8 can be placed on the board at {B:-1} ship length 4 so by trying to place the ship at B[-1],B[-2],B[-3],B[-4] should give out an error as it is out of bounds", () => {
+  expect(newGameBoard.placeShips(ship8, "C", -1)).toStrictEqual(
+    "Error location occupied"
+  );
+});
