@@ -92,8 +92,6 @@ test("Test 3:This test will check for Ships Damage after 1 hit", () => {
 test("Test 4:This test will check for Ships Damage after 2 hits", () => {
   newShip.hit();
   newShip.hit();
-  newShip.hit();
-
   expect(newShip.shipStatus()).toStrictEqual(newShipSunk);
 });
 
@@ -121,14 +119,46 @@ test("Test 9:This test will check whether ship5 can be placed on the board in sh
   );
 });
 
-test("Test 10:This test will check whether ship8 can be placed on the board at {B:7} ship length 4 so by trying to place the ship at B[7],B[8],B[9],B[10] should give out an error as it is out of bounds", () => {
+test("Test 10:This test will checfalsek whether ship8 can be placed on the board at {B:7} ship length 4 so by trying to place the ship at B[7],B[8],B[9],B[10] should give out an error as it is out of bounds", () => {
   expect(newGameBoard.placeShips(ship8, "B", 7)).toStrictEqual(
     "Error location occupied"
   );
 });
+false;
 
 test("Test 11:This test will check whether ship8 can be placed on the board at {B:-1} ship length 4 so by trying to place the ship at B[-1],B[-2],B[-3],B[-4] should give out an error as it is out of bounds", () => {
   expect(newGameBoard.placeShips(ship8, "C", -1)).toStrictEqual(
     "Error location occupied"
   );
+});
+
+test("Test 12: This test will send an attack to Ship1 at A:1 Location and see whether that got recorded in the ship1 object", () => {
+  newGameBoard.receiveAttack("A", 1);
+  console.log(newGameBoard.board["A"][1]["numberOfHits"]);
+  console.log(newGameBoard.board["A"][1]);
+  expect(ship1.shipStatus()).toStrictEqual({
+    numberOfHits: 1,
+    shipLength: 2,
+    shipSunk: false,
+  });
+});
+
+test("Test 13: This test will send an attack to Ship1 at A:2 Location and see whether that got recorded in the ship1 object", () => {
+  newGameBoard.receiveAttack("A", 2);
+
+  console.log(newGameBoard.board["A"][2]["numberOfHits"]);
+  console.log(newGameBoard.board["A"][2]);
+  expect(ship1.shipStatus()).toStrictEqual({
+    numberOfHits: 2,
+    shipLength: 2,
+    shipSunk: true,
+  });
+});
+
+test("Test 14: This test will send an attack to Ship1 at A:5 Location and see whether that got recorded in the board object as there are no ship objects saved there", () => {
+  newGameBoard.receiveAttack("A", 5);
+
+  console.log(newGameBoard.board["A"][5]["numberOfHits"]);
+  console.log(newGameBoard.board["A"][5]);
+  expect(newGameBoard.board["A"][5]).toStrictEqual("Hit");
 });

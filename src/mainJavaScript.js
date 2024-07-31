@@ -57,12 +57,6 @@ class Gameboard {
     this.ship = ship;
     this.xStartCords = xStartCords;
     this.yStartCords = yStartCords;
-    // console.log(this.yStartCords);
-
-    // if (!this.ship.shipLength+this.yStartCords>9 || !this.ship.shipLength+this.yStartCords<0)
-    // {
-    //     console.log("Ok to proceed");
-    // }
 
     if (
       this.board[this.xStartCords][this.yStartCords] === null &&
@@ -81,6 +75,18 @@ class Gameboard {
       return this.board;
     } else {
       return "Error location occupied";
+    }
+  }
+
+  receiveAttack(xAttack, yAttack) {
+    this.xAttack = xAttack;
+    this.yAttack = yAttack;
+
+    if (this.board[this.xAttack][this.yAttack] == null) {
+      this.board[this.xAttack][this.yAttack] = "Hit";
+    } else {
+      this.shipAtLocation = this.board[this.xAttack][this.yAttack];
+      this.shipAtLocation.hit();
     }
   }
 }
