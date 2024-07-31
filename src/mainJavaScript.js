@@ -66,15 +66,12 @@ class Gameboard {
       this.yStartCords > 0
     ) {
       for (let i = 0; i < this.ship.shipLength; i++) {
-        // if (this.board[this.xStartCords][this.yStartCords + i]===null)
-        // {
 
-        // }
         this.board[this.xStartCords][this.yStartCords + i] = this.ship;
       }
       return this.board;
     } else {
-      return "Error location occupied";
+      return "Error location occupied or out of bounds";
     }
   }
 
@@ -88,6 +85,15 @@ class Gameboard {
       this.shipAtLocation = this.board[this.xAttack][this.yAttack];
       this.shipAtLocation.hit();
     }
+  }
+
+  allShipsHealth()
+  {
+    // for (let i = 0; i < this.board.length; i++) {
+
+    //     this.board[this.xStartCords][this.yStartCords + i] = this.ship;
+    //   }
+    return  
   }
 }
 
