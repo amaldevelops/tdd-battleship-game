@@ -38,7 +38,8 @@ class Gameboard {
   constructor() {
     this.gameBoardSize = {
       X: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"],
-      Y: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    //   Y: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    Y:[null,null,null,null,null,null,null,null,null,null,]
     };
 
     this.board = this.createBoard();
