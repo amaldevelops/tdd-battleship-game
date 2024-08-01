@@ -5,7 +5,9 @@
 import "./mainStyleSheet.css";
 
 class ship {
+  static shipIDCounter = 0;
   constructor(shipLength) {
+    this.shipID = ship.shipIDCounter++;
     this.shipLength = shipLength;
     this.numberOfHits = 0;
     this.shipSunk = false;
@@ -43,6 +45,7 @@ class Gameboard {
     };
 
     this.board = this.createBoard();
+    this.shipCount = 10;
   }
 
   createBoard() {
@@ -66,7 +69,6 @@ class Gameboard {
       this.yStartCords > 0
     ) {
       for (let i = 0; i < this.ship.shipLength; i++) {
-
         this.board[this.xStartCords][this.yStartCords + i] = this.ship;
       }
       return this.board;
@@ -87,13 +89,19 @@ class Gameboard {
     }
   }
 
-  allShipsHealth()
-  {
-    // for (let i = 0; i < this.board.length; i++) {
+  allShipsHealth() {
+    this.shipCount;
+    let sunkShipCount = 0;
 
-    //     this.board[this.xStartCords][this.yStartCords + i] = this.ship;
-    //   }
-    return  
+    for (const row of Object.values(this.board)) {
+      row.forEach((ship) => {
+        if (ship && ship.shipSunk === true) {
+          sunkShipCount++;
+        }
+      });
+    }
+
+    return sunkShipCount;
   }
 }
 
