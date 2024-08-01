@@ -171,7 +171,7 @@ test("Test 16: There will be two types of players in the game, human players and
   expect(new2Players.humanPlayer()).toStrictEqual(testBoard);
 });
 
-test("Test 16: There will be two types of players in the game, human players and computer/Ai playersEach player object should contain its own gameboard, this test will check for AI player gameBoard is created properly", () => {
+test("Test 17: There will be two types of players in the game, human players and computer/Ai playersEach player object should contain its own gameboard, this test will check for AI player gameBoard is created properly", () => {
   const new2Players = new Player();
   // newGameBoard.placeShips(ship6, "C", 1);
 

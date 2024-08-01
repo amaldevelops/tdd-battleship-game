@@ -3,3 +3,11 @@
 h1 {
   color: #b32626;
 }
+
+table,th,td{
+  border: 1px solid;
+  border-collapse: collapse;
+  width:10px;
+  height: 10px;
+  padding:5px;
+}
