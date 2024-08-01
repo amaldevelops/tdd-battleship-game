@@ -1,6 +1,6 @@
-import { ship, Gameboard } from "./mainJavaScript";
+import { Ship, Gameboard, Player } from "./mainJavaScript";
 
-const newShip = new ship(2);
+const newShip = new Ship(2);
 const newShipReturnedObject = {
   shipLength: 2,
   numberOfHits: 0,
@@ -39,16 +39,16 @@ const testBoard = {
   J: [null, null, null, null, null, null, null, null, null, null],
 };
 
-const ship1 = new ship(2);
-const ship2 = new ship(1);
-const ship3 = new ship(4);
-const ship4 = new ship(3);
-const ship5 = new ship(5);
-const ship6 = new ship(1);
-const ship7 = new ship(3);
-const ship8 = new ship(4);
-const ship9 = new ship(2);
-const ship10 = new ship(1);
+const ship1 = new Ship(2);
+const ship2 = new Ship(1);
+const ship3 = new Ship(4);
+const ship4 = new Ship(3);
+const ship5 = new Ship(5);
+const ship6 = new Ship(1);
+const ship7 = new Ship(3);
+const ship8 = new Ship(4);
+const ship9 = new Ship(2);
+const ship10 = new Ship(1);
 
 // const shipPlacement = {
 //   A: [0, ship1, ship1, 3, 4, 5, 6, 7, 8, 9],
@@ -158,8 +158,22 @@ test("Test 14: This test will send an attack to Ship1 at A:5 Location and see wh
   expect(newGameBoard.board["A"][5]).toStrictEqual("Hit");
 });
 
-test("Test 16: Gameboards should be able to report whether or not all of their ships have been sunk.", () => {
+test("Test 15: Gameboards should be able to report whether or not all of their ships have been sunk.", () => {
   newGameBoard.placeShips(ship6, "C", 1);
 
   expect(newGameBoard.allShipsHealth()).toStrictEqual(9);
+});
+
+test("Test 16: There will be two types of players in the game, human players and computer/Ai playersEach player object should contain its own gameboard, this test will check for human player gameBoard is created properly", () => {
+  const new2Players = new Player();
+  // newGameBoard.placeShips(ship6, "C", 1);
+
+  expect(new2Players.humanPlayer()).toStrictEqual(testBoard);
+});
+
+test("Test 16: There will be two types of players in the game, human players and computer/Ai playersEach player object should contain its own gameboard, this test will check for AI player gameBoard is created properly", () => {
+  const new2Players = new Player();
+  // newGameBoard.placeShips(ship6, "C", 1);
+
+  expect(new2Players.aiPlayer()).toStrictEqual(testBoard);
 });
