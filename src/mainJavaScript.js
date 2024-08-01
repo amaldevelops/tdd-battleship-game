@@ -91,17 +91,17 @@ class Gameboard {
 
   allShipsHealth() {
     this.shipCount;
-    let sunkShipCount = 0;
+    let sunkShipCount = new Set();
 
     for (const row of Object.values(this.board)) {
       row.forEach((ship) => {
         if (ship && ship.shipSunk === true) {
-          sunkShipCount++;
+          sunkShipCount.add(ship);
         }
       });
     }
 
-    return sunkShipCount;
+    return this.shipCount - sunkShipCount.size;
   }
 }
 

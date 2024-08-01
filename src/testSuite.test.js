@@ -159,10 +159,7 @@ test("Test 14: This test will send an attack to Ship1 at A:5 Location and see wh
 });
 
 test("Test 16: Gameboards should be able to report whether or not all of their ships have been sunk.", () => {
-  //   newGameBoard.receiveAttack("A", 5);
   newGameBoard.placeShips(ship6, "C", 1);
-  console.log(newGameBoard.board);
-  //   console.log(newGameBoard.board["A"][5]["numberOfHits"]);
-  //   console.log(newGameBoard.board["A"][5]);
-  expect(newGameBoard.allShipsHealth()).toStrictEqual(1);
+
+  expect(newGameBoard.allShipsHealth()).toStrictEqual(9);
 });
