@@ -13,24 +13,6 @@
         <h2>Human Player</h2>
         <table>
           <tr>
-            <td>Ship Length</td>
-            <td>Ship Start Coordinates Row</td>
-            <td>Ship Coordinates Column</td>
-            <td>0</td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>7</td>
-            <td>8</td>
-            <td>9</td>
-          </tr>
-
-          <tr>
-            <td></td>
-            <td></td>
             <td>A</td>
             <td></td>
             <td></td>
@@ -45,8 +27,6 @@
           </tr>
 
           <tr>
-            <td></td>
-            <td></td>
             <td>B</td>
             <td></td>
             <td></td>
@@ -61,8 +41,6 @@
           </tr>
 
           <tr>
-            <td></td>
-            <td></td>
             <td>C</td>
             <td></td>
             <td></td>
@@ -76,8 +54,6 @@
             <td></td>
           </tr>
           <tr>
-            <td></td>
-            <td></td>
             <td>D</td>
             <td></td>
             <td></td>
@@ -91,8 +67,6 @@
             <td></td>
           </tr>
           <tr>
-            <td></td>
-            <td></td>
             <td>E</td>
             <td></td>
             <td></td>
@@ -106,8 +80,6 @@
             <td></td>
           </tr>
           <tr>
-            <td></td>
-            <td></td>
             <td>F</td>
             <td></td>
             <td></td>
@@ -121,8 +93,6 @@
             <td></td>
           </tr>
           <tr>
-            <td></td>
-            <td></td>
             <td>G</td>
             <td></td>
             <td></td>
@@ -136,8 +106,6 @@
             <td></td>
           </tr>
           <tr>
-            <td></td>
-            <td></td>
             <td>H</td>
             <td></td>
             <td></td>
@@ -151,8 +119,6 @@
             <td></td>
           </tr>
           <tr>
-            <td></td>
-            <td></td>
             <td>I</td>
             <td></td>
             <td></td>
@@ -166,8 +132,6 @@
             <td></td>
           </tr>
           <tr>
-            <td></td>
-            <td></td>
             <td>J</td>
             <td></td>
             <td></td>
@@ -180,10 +144,325 @@
             <td></td>
             <td></td>
           </tr>
+          <tr>
+            <td></td>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+          </tr>
         </table>
 
         <div>
-          <button type="button">Start Game</button>
+          <form>
+            <div>
+              <label for="shipACords">Ship A Start Coordinates:</label>
+              <select name="shipACords" id="shipACords">
+                <option value="A,0">A,0</option>
+                <option value="A,1">A,1</option>
+                <option value="A,2">A,2</option>
+                <option value="A,3">A,3</option>
+                <option value="A,4">A,4</option>
+                <option value="A,5" selected>A,5</option>
+                <option value="A,6">A,6</option>
+                <option value="A,7">A,7</option>
+                <option value="A,8">A,8</option>
+                <option value="A,9">A,9</option>
+              </select>
+
+              <label for="shipCLength">Ship A Length: </label>
+              <select name="shipALength" id="shipALength">
+                <option value="0">0</option>
+                <option value="1" selected>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="shipBCords">Ship B Start Coordinates:</label>
+              <select name="shipBCords" id="shipBCords">
+                <option value="B,0">B,0</option>
+                <option value="B,1">B,1</option>
+                <option value="B,2">B,2</option>
+                <option value="B,3">B,3</option>
+                <option value="B,4">B,4</option>
+                <option value="B,5" selected>B,5</option>
+                <option value="B,6">B,6</option>
+                <option value="B,7">B,7</option>
+                <option value="B,8">B,8</option>
+                <option value="B,9">B,9</option>
+              </select>
+
+              <label for="shipBLength">Ship B Length: </label>
+              <select name="shipBLength" id="shipBLength">
+                <option value="0">0</option>
+                <option value="1" selected>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="shipCCords">Ship C Start Coordinates:</label>
+              <select name="shipCCords" id="shipCCords">
+                <option value="C,0">C,0</option>
+                <option value="C,1">C,1</option>
+                <option value="C,2">C,2</option>
+                <option value="C,3">C,3</option>
+                <option value="C,4">C,4</option>
+                <option value="C,5" selected>C,5</option>
+                <option value="C,6">C,6</option>
+                <option value="C,7">C,7</option>
+                <option value="C,8">C,8</option>
+                <option value="C,9">C,9</option>
+              </select>
+
+              <label for="shipCLength">Ship C Length: </label>
+              <select name="shipCLength" id="shipCLength">
+                <option value="0">0</option>
+                <option value="1" selected>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="shipDCords">Ship D Start Coordinates:</label>
+              <select name="shipDCords" id="shipDCords">
+                <option value="D,0">D,0</option>
+                <option value="D,1">D,1</option>
+                <option value="D,2">D,2</option>
+                <option value="D,3">D,3</option>
+                <option value="D,4">D,4</option>
+                <option value="D,5" selected>D,5</option>
+                <option value="D,6">D,6</option>
+                <option value="D,7">D,7</option>
+                <option value="D,8">D,8</option>
+                <option value="D,9">D,9</option>
+              </select>
+
+              <label for="shipDLength">Ship D Length: </label>
+              <select name="shipDLength" id="shipDLength">
+                <option value="0">0</option>
+                <option value="1" selected>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="shipECords">Ship E Start Coordinates:</label>
+              <select name="shipECords" id="shipECords">
+                <option value="E,0">E,0</option>
+                <option value="E,1">E,1</option>
+                <option value="E,2">E,2</option>
+                <option value="E,3">E,3</option>
+                <option value="E,4">E,4</option>
+                <option value="E,5" selected>E,5</option>
+                <option value="E,6">E,6</option>
+                <option value="E,7">E,7</option>
+                <option value="E,8">E,8</option>
+                <option value="E,9">E,9</option>
+              </select>
+
+              <label for="shipELength">Ship E Length: </label>
+              <select name="shipELength" id="shipELength">
+                <option value="0">0</option>
+                <option value="1" selected>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="shipFCords">Ship F Start Coordinates:</label>
+              <select name="shipFCords" id="shipFCords">
+                <option value="F,0">F,0</option>
+                <option value="F,1">F,1</option>
+                <option value="F,2">F,2</option>
+                <option value="F,3">F,3</option>
+                <option value="F,4">F,4</option>
+                <option value="F,5" selected>F,5</option>
+                <option value="F,6">F,6</option>
+                <option value="F,7">F,7</option>
+                <option value="F,8">F,8</option>
+                <option value="F,9">F,9</option>
+              </select>
+
+              <label for="shipFLength">Ship F Length: </label>
+              <select name="shipFLength" id="shipFLength">
+                <option value="0">0</option>
+                <option value="1" selected>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="shipGCords">Ship G Start Coordinates:</label>
+              <select name="shipGCords" id="shipGCords">
+                <option value="G,0">G,0</option>
+                <option value="G,1">G,1</option>
+                <option value="G,2">G,2</option>
+                <option value="G,3">G,3</option>
+                <option value="G,4">G,4</option>
+                <option value="G,5" selected>G,5</option>
+                <option value="G,6">G,6</option>
+                <option value="G,7">G,7</option>
+                <option value="G,8">G,8</option>
+                <option value="G,9">G,9</option>
+              </select>
+
+              <label for="shipGLength">Ship G Length: </label>
+              <select name="shipGLength" id="shipGLength">
+                <option value="0">0</option>
+                <option value="1" selected>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="shipHCords">Ship H Start Coordinates:</label>
+              <select name="shipHCords" id="shipHCords">
+                <option value="H,0">H,0</option>
+                <option value="H,1">H,1</option>
+                <option value="H,2">H,2</option>
+                <option value="H,3">H,3</option>
+                <option value="H,4">H,4</option>
+                <option value="H,5" selected>H,5</option>
+                <option value="H,6">H,6</option>
+                <option value="H,7">H,7</option>
+                <option value="H,8">H,8</option>
+                <option value="H,9">H,9</option>
+              </select>
+
+              <label for="shipHLength">Ship H Length: </label>
+              <select name="shipHLength" id="shipHLength">
+                <option value="0">0</option>
+                <option value="1" selected>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="shipICords">Ship I Start Coordinates:</label>
+              <select name="shipICords" id="shipICords">
+                <option value="I,0">I,0</option>
+                <option value="I,1">I,1</option>
+                <option value="I,2">I,2</option>
+                <option value="I,3">I,3</option>
+                <option value="I,4">I,4</option>
+                <option value="I,5" selected>I,5</option>
+                <option value="I,6">I,6</option>
+                <option value="I,7">I,7</option>
+                <option value="I,8">I,8</option>
+                <option value="I,9">I,9</option>
+              </select>
+
+              <label for="shipILength">Ship I Length: </label>
+              <select name="shipILength" id="shipILength">
+                <option value="0">0</option>
+                <option value="1" selected>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="shipJCords">Ship J Start Coordinates:</label>
+              <select name="shipJCords" id="shipJCords">
+                <option value="J,0">J,0</option>
+                <option value="J,1">J,1</option>
+                <option value="J,2">J,2</option>
+                <option value="J,3">J,3</option>
+                <option value="J,4">J,4</option>
+                <option value="J,5" selected>J,5</option>
+                <option value="J,6">J,6</option>
+                <option value="J,7">J,7</option>
+                <option value="J,8">J,8</option>
+                <option value="J,9">J,9</option>
+              </select>
+
+              <label for="shipJLength">Ship J Length: </label>
+              <select name="shipJLength" id="shipJLength">
+                <option value="0">0</option>
+                <option value="1" selected>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+              </select>
+            </div>
+
+            <button id="startGameButton" type="button">Start Game</button>
+          </form>
         </div>
       </div>
 
@@ -191,19 +470,6 @@
         <h2>Ai Player</h2>
         <table>
           <tr>
-            <td></td>
-            <td>0</td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>7</td>
-            <td>8</td>
-            <td>9</td>
-          </tr>
-          <tr>
             <td>A</td>
             <td></td>
             <td></td>
@@ -334,6 +600,20 @@
             <td></td>
             <td></td>
             <td></td>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
           </tr>
         </table>
       </div>
