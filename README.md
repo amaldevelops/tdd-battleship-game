@@ -1,5 +1,8 @@
 # Battleship Game
 
+## Live Project
+https://1amal.github.io/javaScriptTDD-BattleshipGame/
+
 ## Overview
 
 This project implements a classic Battleship game using JavaScript. The game includes several core components:
