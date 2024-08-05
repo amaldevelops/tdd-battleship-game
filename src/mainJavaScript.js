@@ -25,12 +25,12 @@ const ShipJ = new Ship("ShipJ", 4);
 gameBoardHuman.placeShips(ShipA,"A",5);
 gameBoardHuman.placeShips(ShipB,"B",0);
 gameBoardHuman.placeShips(ShipC,"C",5);
-gameBoardHuman.placeShips(ShipD,"D",9);
+gameBoardHuman.placeShips(ShipD,"D",8);
 gameBoardHuman.placeShips(ShipE,"E",6);
 gameBoardHuman.placeShips(ShipF,"F",1);
 gameBoardHuman.placeShips(ShipG,"G",4);
 gameBoardHuman.placeShips(ShipH,"H",5);
-gameBoardHuman.placeShips(ShipI,"I",9);
+gameBoardHuman.placeShips(ShipI,"I",8);
 gameBoardHuman.placeShips(ShipJ,"J",2);
 
 

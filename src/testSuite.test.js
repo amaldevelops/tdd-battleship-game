@@ -80,12 +80,12 @@ const gameBoardHumanTenShipsPlacedObject={
   A: [null, null, null, null, null, ShipA, null, null, null, null],
   B: [ShipB, ShipB, null, null, null, null, null, null, null, null],
   C: [null, null, null, null, null, ShipC, ShipC, ShipC, ShipC, null],
-  D: [null, null, null, null, null, null, null, null, null, ShipD],
+  D: [null, null, null, null, null, null, null, null, ShipD,null ],
   E: [null, null, null, null, null, null, ShipE, null, null, null],
   F: [null, ShipF, null, null, null, null, null, null, null, null],
   G: [null, null, null, null, ShipG, ShipG, null, null, null, null],
   H: [null, null, null, null, null, ShipH, ShipH, ShipH, null, null],
-  I: [null, null, null, null, null, null, null, null, null, ShipI],
+  I: [null, null, null, null, null, null, null, null, ShipI,null],
   J: [null, null, ShipJ, ShipJ, ShipJ, ShipJ, null, null, null, null],
 };
 
@@ -285,8 +285,8 @@ test("Test 18: At the game start 10 Ship class instances will be created name Sh
   expect(ShipJ.shipStatus()).toStrictEqual(ShipJTestObject);
 });
 
-test.skip("Test 19: This will test Human player and Computer GameBoard are created correctly", () => {
-  expect(gameBoardHuman.gameBoardStatus()).toStrictEqual(testBoard);
+test("Test 19: This will test Human player and Computer GameBoard are created correctly", () => {
+  expect(gameBoardHuman.gameBoardStatus()).toStrictEqual(gameBoardHumanTenShipsPlacedObject);
   expect(gameBoardAi.gameBoardStatus()).toStrictEqual(testBoard);
 });
 

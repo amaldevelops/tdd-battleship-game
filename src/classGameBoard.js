@@ -24,20 +24,20 @@ class Gameboard {
       return this.board;
     }
   
-    placeShips(ship, xStartCords, yStartCords) {
+    placeShips(ship, rowStartCords, columnStartCords) {
       this.ship = ship;
-      this.xStartCords = xStartCords;
-      this.yStartCords = yStartCords;
+      this.rowStartCords = rowStartCords;
+      this.columnStartCords = columnStartCords;
   
       if (
-        this.board[this.xStartCords][this.yStartCords] === null &&
-        this.board[this.xStartCords][this.yStartCords + this.ship.shipLength] ===
+        this.board[this.rowStartCords][this.columnStartCords] === null &&
+        this.board[this.rowStartCords][this.columnStartCords + this.ship.shipLength] ===
           null &&
-        this.yStartCords + this.ship.shipLength < 9 &&
-        this.yStartCords > 0
+        this.columnStartCords + this.ship.shipLength <= 9 &&
+        this.columnStartCords >= 0
       ) {
         for (let i = 0; i < this.ship.shipLength; i++) {
-          this.board[this.xStartCords][this.yStartCords + i] = this.ship;
+          this.board[this.rowStartCords][this.columnStartCords + i] = this.ship;
         }
         return this.board;
       } else {
@@ -45,14 +45,14 @@ class Gameboard {
       }
     }
   
-    receiveAttack(xAttack, yAttack) {
-      this.xAttack = xAttack;
-      this.yAttack = yAttack;
+    receiveAttack(rowAttack, columnAttack) {
+      this.rowAttack = rowAttack;
+      this.columnAttack = columnAttack;
   
-      if (this.board[this.xAttack][this.yAttack] == null) {
-        this.board[this.xAttack][this.yAttack] = "Hit";
+      if (this.board[this.rowAttack][this.columnAttack] == null) {
+        this.board[this.rowAttack][this.columnAttack] = "Hit";
       } else {
-        this.shipAtLocation = this.board[this.xAttack][this.yAttack];
+        this.shipAtLocation = this.board[this.rowAttack][this.columnAttack];
         this.shipAtLocation.hit();
       }
     }
