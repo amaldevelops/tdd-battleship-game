@@ -2,22 +2,26 @@ export {Gameboard};
 
 class Gameboard {
     constructor() {
-      this.gameBoardSize = {
-        X: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"],
-        //   Y: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-        Y: [null, null, null, null, null, null, null, null, null, null],
-      };
-  
+
       this.board = this.createBoard();
-      this.shipCount = 10;
+      
     }
   
     createBoard() {
+      this.gameBoardSize = {
+        X: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"],
+        Y: [null, null, null, null, null, null, null, null, null, null],
+      };
       const newBoard = {};
       for (let i = 0; i < this.gameBoardSize.X.length; i++) {
         newBoard[this.gameBoardSize.X[i]] = [...this.gameBoardSize.Y];
       }
       return newBoard;
+    }
+
+    gameBoardStatus()
+    {
+      return this.board;
     }
   
     placeShips(ship, xStartCords, yStartCords) {
@@ -54,7 +58,8 @@ class Gameboard {
     }
   
     allShipsHealth() {
-      this.shipCount;
+      this.shipCount = 10;
+      // this.shipCount;
       let sunkShipCount = new Set();
   
       for (const row of Object.values(this.board)) {
@@ -67,4 +72,6 @@ class Gameboard {
   
       return this.shipCount - sunkShipCount.size;
     }
+
+    
   }

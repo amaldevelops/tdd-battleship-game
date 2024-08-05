@@ -10,7 +10,20 @@ import {
   ShipH,
   ShipI,
   ShipJ,
+  gameBoardHuman,
+  gameBoardAi,
 } from "./mainJavaScript"; //Class instance exports
+
+const ship1 = new Ship("Z2", 2);
+const ship2 = new Ship("Z3", 1);
+const ship3 = new Ship("Z4", 4);
+const ship4 = new Ship("Z5", 3);
+const ship5 = new Ship("Z6", 5);
+const ship6 = new Ship("Z7", 1);
+const ship7 = new Ship("Z8", 3);
+const ship8 = new Ship("Z9", 4);
+const ship9 = new Ship("Z10", 2);
+const ship10 = new Ship("Z11", 1);
 
 const newShip = new Ship("Z", 2);
 const newShipReturnedObject = {
@@ -49,16 +62,34 @@ const testBoard = {
   J: [null, null, null, null, null, null, null, null, null, null],
 };
 
-const ship1 = new Ship("Z2", 2);
-const ship2 = new Ship("Z3", 1);
-const ship3 = new Ship("Z4", 4);
-const ship4 = new Ship("Z5", 3);
-const ship5 = new Ship("Z6", 5);
-const ship6 = new Ship("Z7", 1);
-const ship7 = new Ship("Z8", 3);
-const ship8 = new Ship("Z9", 4);
-const ship9 = new Ship("Z10", 2);
-const ship10 = new Ship("Z11", 1);
+
+const shipPlacement = {
+  A: [null, ship1, ship1, null, null, null, null, null, null, null],
+  B: [null, null, null, null, null, null, null, null, null, null],
+  C: [null, null, null, null, null, null, null, null, null, null],
+  D: [null, null, null, null, null, null, null, null, null, null],
+  E: [null, null, null, null, null, null, null, null, null, null],
+  F: [null, null, null, null, null, null, null, null, null, null],
+  G: [null, null, null, null, null, null, null, null, null, null],
+  H: [null, null, null, null, null, null, null, null, null, null],
+  I: [null, null, null, null, null, null, null, null, null, null],
+  J: [null, null, null, null, null, null, null, null, null, null],
+};
+
+const gameBoardHumanTenShipsPlacedObject={
+  A: [null, null, null, null, null, ShipA, null, null, null, null],
+  B: [ShipB, ShipB, null, null, null, null, null, null, null, null],
+  C: [null, null, null, null, null, ShipC, ShipC, ShipC, ShipC, null],
+  D: [null, null, null, null, null, null, null, null, null, ShipD],
+  E: [null, null, null, null, null, null, ShipE, null, null, null],
+  F: [null, ShipF, null, null, null, null, null, null, null, null],
+  G: [null, null, null, null, ShipG, ShipG, null, null, null, null],
+  H: [null, null, null, null, null, ShipH, ShipH, ShipH, null, null],
+  I: [null, null, null, null, null, null, null, null, null, ShipI],
+  J: [null, null, ShipJ, ShipJ, ShipJ, ShipJ, null, null, null, null],
+};
+
+
 
 const ShipATestObject = {
   shipName: "ShipA",
@@ -129,18 +160,6 @@ const ShipJTestObject = {
   shipSunk: false,
 };
 
-const shipPlacement = {
-  A: [null, ship1, ship1, null, null, null, null, null, null, null],
-  B: [null, null, null, null, null, null, null, null, null, null],
-  C: [null, null, null, null, null, null, null, null, null, null],
-  D: [null, null, null, null, null, null, null, null, null, null],
-  E: [null, null, null, null, null, null, null, null, null, null],
-  F: [null, null, null, null, null, null, null, null, null, null],
-  G: [null, null, null, null, null, null, null, null, null, null],
-  H: [null, null, null, null, null, null, null, null, null, null],
-  I: [null, null, null, null, null, null, null, null, null, null],
-  J: [null, null, null, null, null, null, null, null, null, null],
-};
 
 test("Test 1:This test will check for Ship Status when first initialized", () => {
   expect(newShip.shipStatus()).toStrictEqual(newShipReturnedObject);
@@ -264,4 +283,16 @@ test("Test 18: At the game start 10 Ship class instances will be created name Sh
   expect(ShipI.shipStatus()).toStrictEqual(ShipITestObject);
 
   expect(ShipJ.shipStatus()).toStrictEqual(ShipJTestObject);
+});
+
+test.skip("Test 19: This will test Human player and Computer GameBoard are created correctly", () => {
+  expect(gameBoardHuman.gameBoardStatus()).toStrictEqual(testBoard);
+  expect(gameBoardAi.gameBoardStatus()).toStrictEqual(testBoard);
+});
+
+test ("Test 20: This will test Human Player board with 10 ships placed according to the default coordinates",()=>{
+console.log(gameBoardHumanTenShipsPlacedObject);
+console.log(gameBoardHuman.gameBoardStatus());
+
+expect (gameBoardHuman.gameBoardStatus()).toStrictEqual(gameBoardHumanTenShipsPlacedObject);
 });
