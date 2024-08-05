@@ -1,4 +1,5 @@
-import { Ship, Gameboard, Player } from "./mainJavaScript";
+import { Ship, Gameboard, Player } from "./mainJavaScript"; // Class Imports
+import{ShipA} from "./mainJavaScript"; //Class instance exports
 
 const newShip = new Ship(2);
 const newShipReturnedObject = {
@@ -49,6 +50,15 @@ const ship7 = new Ship(3);
 const ship8 = new Ship(4);
 const ship9 = new Ship(2);
 const ship10 = new Ship(1);
+
+const ShipATestObject={
+  shipName:"ShipA",
+  shipLength:1,
+  numberOfHits:0,
+  shipSunk:false
+
+
+}
 
 // const shipPlacement = {
 //   A: [0, ship1, ship1, 3, 4, 5, 6, 7, 8, 9],
@@ -176,4 +186,8 @@ test("Test 17: There will be two types of players in the game, human players and
   // newGameBoard.placeShips(ship6, "C", 1);
 
   expect(new2Players.aiPlayer()).toStrictEqual(testBoard);
+});
+
+test ("Test 18: At the game start 10 Ship objects will be created name ShipA, ShipB,ShipC,ShipD,ShipE,ShipF,ShipG,ShipH,ShipI,ShipJ, this test will check whether they are correctly created",()=>{
+expect(ShipA).toStrictEqual(ShipATestObject);
 });

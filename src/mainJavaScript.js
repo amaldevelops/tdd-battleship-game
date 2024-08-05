@@ -8,5 +8,9 @@ import { Ship } from "./classShip";
 import { Gameboard } from "./classGameBoard";
 import {Player} from "./classPlayers";
 
+const ShipA=new Ship(1);
+
 //ES Module Exports
-export { Ship, Gameboard, Player };
+export { Ship, Gameboard, Player }; //Class exports
+export {ShipA} //Class instance exports
+
