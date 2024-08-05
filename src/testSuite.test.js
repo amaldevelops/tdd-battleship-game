@@ -1,8 +1,20 @@
 import { Ship, Gameboard, Player } from "./mainJavaScript"; // Class Imports
-import{ShipA} from "./mainJavaScript"; //Class instance exports
+import {
+  ShipA,
+  ShipB,
+  ShipC,
+  ShipD,
+  ShipE,
+  ShipF,
+  ShipG,
+  ShipH,
+  ShipI,
+  ShipJ,
+} from "./mainJavaScript"; //Class instance exports
 
-const newShip = new Ship(2);
+const newShip = new Ship("Z", 2);
 const newShipReturnedObject = {
+  shipName: "Z",
   shipLength: 2,
   numberOfHits: 0,
   shipSunk: false,
@@ -10,22 +22,19 @@ const newShipReturnedObject = {
 
 const newGameBoard = new Gameboard();
 
-const newShipDamage = { shipLength: 2, numberOfHits: 1, shipSunk: false };
+const newShipDamage = {
+  shipName: "Z",
+  shipLength: 2,
+  numberOfHits: 1,
+  shipSunk: false,
+};
 
-const newShipSunk = { shipLength: 2, numberOfHits: 2, shipSunk: true };
-
-// const testBoard = {
-//   A: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   B: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   C: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   D: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   E: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   F: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   G: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   H: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   I: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   J: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-// };
+const newShipSunk = {
+  shipName: "Z",
+  shipLength: 2,
+  numberOfHits: 2,
+  shipSunk: true,
+};
 
 const testBoard = {
   A: [null, null, null, null, null, null, null, null, null, null],
@@ -40,38 +49,85 @@ const testBoard = {
   J: [null, null, null, null, null, null, null, null, null, null],
 };
 
-const ship1 = new Ship(2);
-const ship2 = new Ship(1);
-const ship3 = new Ship(4);
-const ship4 = new Ship(3);
-const ship5 = new Ship(5);
-const ship6 = new Ship(1);
-const ship7 = new Ship(3);
-const ship8 = new Ship(4);
-const ship9 = new Ship(2);
-const ship10 = new Ship(1);
+const ship1 = new Ship("Z2", 2);
+const ship2 = new Ship("Z3", 1);
+const ship3 = new Ship("Z4", 4);
+const ship4 = new Ship("Z5", 3);
+const ship5 = new Ship("Z6", 5);
+const ship6 = new Ship("Z7", 1);
+const ship7 = new Ship("Z8", 3);
+const ship8 = new Ship("Z9", 4);
+const ship9 = new Ship("Z10", 2);
+const ship10 = new Ship("Z11", 1);
 
-const ShipATestObject={
-  shipName:"ShipA",
-  shipLength:1,
-  numberOfHits:0,
-  shipSunk:false
+const ShipATestObject = {
+  shipName: "ShipA",
+  shipLength: 1,
+  numberOfHits: 0,
+  shipSunk: false,
+};
 
+const ShipBTestObject = {
+  shipName: "ShipB",
+  shipLength: 2,
+  numberOfHits: 0,
+  shipSunk: false,
+};
 
-}
+const ShipCTestObject = {
+  shipName: "ShipC",
+  shipLength: 4,
+  numberOfHits: 0,
+  shipSunk: false,
+};
+const ShipDTestObject = {
+  shipName: "ShipD",
+  shipLength: 1,
+  numberOfHits: 0,
+  shipSunk: false,
+};
 
-// const shipPlacement = {
-//   A: [0, ship1, ship1, 3, 4, 5, 6, 7, 8, 9],
-//   B: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   C: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   D: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   E: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   F: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   G: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   H: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   I: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   J: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-// };
+const ShipETestObject = {
+  shipName: "ShipE",
+  shipLength: 1,
+  numberOfHits: 0,
+  shipSunk: false,
+};
+
+const ShipFTestObject = {
+  shipName: "ShipF",
+  shipLength: 1,
+  numberOfHits: 0,
+  shipSunk: false,
+};
+
+const ShipGTestObject = {
+  shipName: "ShipG",
+  shipLength: 2,
+  numberOfHits: 0,
+  shipSunk: false,
+};
+
+const ShipHTestObject = {
+  shipName: "ShipH",
+  shipLength: 3,
+  numberOfHits: 0,
+  shipSunk: false,
+};
+
+const ShipITestObject = {
+  shipName: "ShipI",
+  shipLength: 1,
+  numberOfHits: 0,
+  shipSunk: false,
+};
+
+const ShipJTestObject = {
+  shipName: "ShipJ",
+  shipLength: 4,
+  numberOfHits: 0,
+  shipSunk: false,
+};
 
 const shipPlacement = {
   A: [null, ship1, ship1, null, null, null, null, null, null, null],
@@ -146,6 +202,7 @@ test("Test 12: This test will send an attack to Ship1 at A:1 Location and see wh
   newGameBoard.receiveAttack("A", 1);
 
   expect(ship1.shipStatus()).toStrictEqual({
+    shipName: "Z2",
     numberOfHits: 1,
     shipLength: 2,
     shipSunk: false,
@@ -156,6 +213,7 @@ test("Test 13: This test will send an attack to Ship1 at A:2 Location and see wh
   newGameBoard.receiveAttack("A", 2);
 
   expect(ship1.shipStatus()).toStrictEqual({
+    shipName: "Z2",
     numberOfHits: 2,
     shipLength: 2,
     shipSunk: true,
@@ -176,18 +234,34 @@ test("Test 15: Gameboards should be able to report whether or not all of their s
 
 test("Test 16: There will be two types of players in the game, human players and computer/Ai playersEach player object should contain its own gameboard, this test will check for human player gameBoard is created properly", () => {
   const new2Players = new Player();
-  // newGameBoard.placeShips(ship6, "C", 1);
 
   expect(new2Players.humanPlayer()).toStrictEqual(testBoard);
 });
 
 test("Test 17: There will be two types of players in the game, human players and computer/Ai playersEach player object should contain its own gameboard, this test will check for AI player gameBoard is created properly", () => {
   const new2Players = new Player();
-  // newGameBoard.placeShips(ship6, "C", 1);
 
   expect(new2Players.aiPlayer()).toStrictEqual(testBoard);
 });
 
-test ("Test 18: At the game start 10 Ship objects will be created name ShipA, ShipB,ShipC,ShipD,ShipE,ShipF,ShipG,ShipH,ShipI,ShipJ, this test will check whether they are correctly created",()=>{
-expect(ShipA).toStrictEqual(ShipATestObject);
+test("Test 18: At the game start 10 Ship class instances will be created name ShipA,ShipB,ShipC,ShipD,ShipE,ShipF,ShipG,ShipH,ShipI,ShipJ, this test will check whether they are correctly created", () => {
+  expect(ShipA.shipStatus()).toStrictEqual(ShipATestObject);
+
+  expect(ShipB.shipStatus()).toStrictEqual(ShipBTestObject);
+
+  expect(ShipC.shipStatus()).toStrictEqual(ShipCTestObject);
+
+  expect(ShipD.shipStatus()).toStrictEqual(ShipDTestObject);
+
+  expect(ShipE.shipStatus()).toStrictEqual(ShipETestObject);
+
+  expect(ShipF.shipStatus()).toStrictEqual(ShipFTestObject);
+
+  expect(ShipG.shipStatus()).toStrictEqual(ShipGTestObject);
+
+  expect(ShipH.shipStatus()).toStrictEqual(ShipHTestObject);
+
+  expect(ShipI.shipStatus()).toStrictEqual(ShipITestObject);
+
+  expect(ShipJ.shipStatus()).toStrictEqual(ShipJTestObject);
 });
