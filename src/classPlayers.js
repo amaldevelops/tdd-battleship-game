@@ -1,18 +1,20 @@
 export { Player };
 import { Gameboard } from "./classGameBoard";
+import { Ship } from "./classShip";
 
 class Player {
   constructor() {
-    this.newGame = new Gameboard();
+    this.humanPlayerGameBoard = new Gameboard();
+    this.aiPlayerGameBoard = new Gameboard();
   }
 
   humanPlayer() {
-    this.humanPlayerGameBoard = this.newGame.createBoard();
-    return this.humanPlayerGameBoard;
+    // this.humanPlayerGameBoard = this.newGame.createBoard();
+    return this.humanPlayerGameBoard.gameBoardStatus();
   }
 
   aiPlayer() {
-    this.aiPlayerGameBoard = this.newGame.createBoard();
-    return this.aiPlayerGameBoard;
+    // this.aiPlayerGameBoard = this.newGame.createBoard();
+    return this.aiPlayerGameBoard.gameBoardStatus();
   }
 }

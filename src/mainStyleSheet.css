@@ -30,7 +30,17 @@ td{
   background-color: #b3c0d7;
 }
 
+.shipsNotSunk
+{
+  background-color: #1ad223;
+}
+
 .missedAttacks
 {
   background-color: #252a31;
+}
+
+.successfulAttacks
+{
+  background-color: #ff0000;
 }

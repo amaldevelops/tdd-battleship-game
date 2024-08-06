@@ -1,18 +1,43 @@
+/**
+ * @jest-environment jsdom
+ */
+
+//When testing Webapps make sure to add the Above code which is commented out to Jest test file or other wise it will throw out an error "The error below may be caused by using the wrong test environment, see https://jestjs.io/docs/configuration#testenvironment-string. Consider using the "jsdom" test environment." Then do the follwing; 
+
+//As of Jest 28 "jsdom" is no longer shipped by default, make sure to install it separately.
+// npm install -D jest-environment-jsdom
+
+//Then wrap the event listener inside following so it will only run when the Dom is finally loaded
+//document.addEventListener('DOMContentLoaded', () => {});
+
+
 import { Ship, Gameboard, Player } from "./mainJavaScript"; // Class Imports
-import {
-  ShipA,
-  ShipB,
-  ShipC,
-  ShipD,
-  ShipE,
-  ShipF,
-  ShipG,
-  ShipH,
-  ShipI,
-  ShipJ,
-  gameBoardHuman,
-  gameBoardAi,
-} from "./mainJavaScript"; //Class instance exports
+// import { gameBoardHuman, gameBoardAi } from "./mainJavaScript"; //Class instance exports
+
+const gameBoardHuman = new Gameboard();
+const gameBoardAi = new Gameboard();
+
+const ShipA = new Ship("ShipA", 1);
+const ShipB = new Ship("ShipB", 2);
+const ShipC = new Ship("ShipC", 4);
+const ShipD = new Ship("ShipD", 1);
+const ShipE = new Ship("ShipE", 1);
+const ShipF = new Ship("ShipF", 1);
+const ShipG = new Ship("ShipG", 2);
+const ShipH = new Ship("ShipH", 3);
+const ShipI = new Ship("ShipI", 1);
+const ShipJ = new Ship("ShipJ", 4);
+
+gameBoardHuman.placeShips(ShipA, "A", 5);
+gameBoardHuman.placeShips(ShipB, "B", 0);
+gameBoardHuman.placeShips(ShipC, "C", 5);
+gameBoardHuman.placeShips(ShipD, "D", 8);
+gameBoardHuman.placeShips(ShipE, "E", 6);
+gameBoardHuman.placeShips(ShipF, "F", 1);
+gameBoardHuman.placeShips(ShipG, "G", 4);
+gameBoardHuman.placeShips(ShipH, "H", 5);
+gameBoardHuman.placeShips(ShipI, "I", 8);
+gameBoardHuman.placeShips(ShipJ, "J", 2);
 
 const ship1 = new Ship("Z2", 2);
 const ship2 = new Ship("Z3", 1);
@@ -62,7 +87,6 @@ const testBoard = {
   J: [null, null, null, null, null, null, null, null, null, null],
 };
 
-
 const shipPlacement = {
   A: [null, ship1, ship1, null, null, null, null, null, null, null],
   B: [null, null, null, null, null, null, null, null, null, null],
@@ -76,20 +100,18 @@ const shipPlacement = {
   J: [null, null, null, null, null, null, null, null, null, null],
 };
 
-const gameBoardHumanTenShipsPlacedObject={
+const gameBoardHumanTenShipsPlacedObject = {
   A: [null, null, null, null, null, ShipA, null, null, null, null],
   B: [ShipB, ShipB, null, null, null, null, null, null, null, null],
   C: [null, null, null, null, null, ShipC, ShipC, ShipC, ShipC, null],
-  D: [null, null, null, null, null, null, null, null, ShipD,null ],
+  D: [null, null, null, null, null, null, null, null, ShipD, null],
   E: [null, null, null, null, null, null, ShipE, null, null, null],
   F: [null, ShipF, null, null, null, null, null, null, null, null],
   G: [null, null, null, null, ShipG, ShipG, null, null, null, null],
   H: [null, null, null, null, null, ShipH, ShipH, ShipH, null, null],
-  I: [null, null, null, null, null, null, null, null, ShipI,null],
+  I: [null, null, null, null, null, null, null, null, ShipI, null],
   J: [null, null, ShipJ, ShipJ, ShipJ, ShipJ, null, null, null, null],
 };
-
-
 
 const ShipATestObject = {
   shipName: "ShipA",
@@ -159,7 +181,6 @@ const ShipJTestObject = {
   numberOfHits: 0,
   shipSunk: false,
 };
-
 
 test("Test 1:This test will check for Ship Status when first initialized", () => {
   expect(newShip.shipStatus()).toStrictEqual(newShipReturnedObject);
@@ -286,13 +307,17 @@ test("Test 18: At the game start 10 Ship class instances will be created name Sh
 });
 
 test("Test 19: This will test Human player and Computer GameBoard are created correctly", () => {
-  expect(gameBoardHuman.gameBoardStatus()).toStrictEqual(gameBoardHumanTenShipsPlacedObject);
+  expect(gameBoardHuman.gameBoardStatus()).toStrictEqual(
+    gameBoardHumanTenShipsPlacedObject
+  );
   expect(gameBoardAi.gameBoardStatus()).toStrictEqual(testBoard);
 });
 
-test ("Test 20: This will test Human Player board with 10 ships placed according to the default coordinates",()=>{
-console.log(gameBoardHumanTenShipsPlacedObject);
-console.log(gameBoardHuman.gameBoardStatus());
+test("Test 20: This will test Human Player board with 10 ships placed according to the default coordinates", () => {
+  // console.log(gameBoardHumanTenShipsPlacedObject);
+  // console.log(gameBoardHuman.gameBoardStatus());
 
-expect (gameBoardHuman.gameBoardStatus()).toStrictEqual(gameBoardHumanTenShipsPlacedObject);
+  expect(gameBoardHuman.gameBoardStatus()).toStrictEqual(
+    gameBoardHumanTenShipsPlacedObject
+  );
 });
