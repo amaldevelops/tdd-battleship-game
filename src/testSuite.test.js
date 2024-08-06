@@ -2,14 +2,13 @@
  * @jest-environment jsdom
  */
 
-//When testing Webapps make sure to add the Above code which is commented out to Jest test file or other wise it will throw out an error "The error below may be caused by using the wrong test environment, see https://jestjs.io/docs/configuration#testenvironment-string. Consider using the "jsdom" test environment." Then do the follwing; 
+//When testing Webapps make sure to add the Above code which is commented out to Jest test file or other wise it will throw out an error "The error below may be caused by using the wrong test environment, see https://jestjs.io/docs/configuration#testenvironment-string. Consider using the "jsdom" test environment." Then do the follwing;
 
 //As of Jest 28 "jsdom" is no longer shipped by default, make sure to install it separately.
 // npm install -D jest-environment-jsdom
 
 //Then wrap the event listener inside following so it will only run when the Dom is finally loaded
 //document.addEventListener('DOMContentLoaded', () => {});
-
 
 import { Ship, Gameboard, Player } from "./mainJavaScript"; // Class Imports
 // import { gameBoardHuman, gameBoardAi } from "./mainJavaScript"; //Class instance exports
