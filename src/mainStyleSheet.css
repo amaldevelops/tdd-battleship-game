@@ -19,3 +19,18 @@ td{
   padding:0.25rem;
   text-align: center;
 }
+
+.labelsRow
+{
+  background-color: #9e8686;
+}
+
+.labelsColumn
+{
+  background-color: #b3c0d7;
+}
+
+.missedAttacks
+{
+  background-color: #252a31;
+}
