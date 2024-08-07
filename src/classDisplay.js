@@ -11,18 +11,11 @@ export class Display {
     document.addEventListener("DOMContentLoaded", () => {
       startGameButton.addEventListener("click", () => {
         this.updateGameStatusOnDisplay("Yayy Game Started!");
-        this.newPlayersInstance = new Player();
-        this.newShipA = new Ship("Ship A", 6);
-        // console.log(this.newPlayersInstance.humanPlayer());
+        this.newPlayersHumanAndAi = new Player();
         this.humanPlayerShipsInitialPlacement();
 
-        this.newPlayersInstance.humanPlayerInitialPlacement(
-          this.newShipA,
-          "B",
-          1
-        );
         console.log(
-          this.newPlayersInstance.humanPlayerBoardStatus()["board"]["B"][1][
+          this.newPlayersHumanAndAi.humanPlayerBoardStatus()["board"]["B"][1][
             "shipName"
           ]
         );
@@ -34,7 +27,78 @@ export class Display {
     // this.humanPlayerGameBoard.placeShips(ShipA, "A", 5);
   }
 
-  humanPlayerShipsInitialPlacement() {}
+  humanPlayerShipsInitialPlacement() {
+    this.newShipA = new Ship("Ship A", 1);
+    this.newShipB = new Ship("Ship B", 2);
+    this.newShipC = new Ship("Ship C", 4);
+    this.newShipD = new Ship("Ship D", 1);
+    this.newShipE = new Ship("Ship E", 1);
+    this.newShipF = new Ship("Ship F", 1);
+    this.newShipG = new Ship("Ship G", 2);
+    this.newShipH = new Ship("Ship H", 3);
+    this.newShipI = new Ship("Ship I", 1);
+    this.newShipJ = new Ship("Ship J", 4);
+
+    this.newPlayersHumanAndAi.humanPlayerInitialPlacement(
+      this.newShipA,
+      "A",
+      5
+    );
+
+    this.newPlayersHumanAndAi.humanPlayerInitialPlacement(
+      this.newShipB,
+      "B",
+      0
+    );
+
+    this.newPlayersHumanAndAi.humanPlayerInitialPlacement(
+      this.newShipC,
+      "C",
+      5
+    );
+
+    this.newPlayersHumanAndAi.humanPlayerInitialPlacement(
+      this.newShipD,
+      "D",
+      8
+    );
+
+    this.newPlayersHumanAndAi.humanPlayerInitialPlacement(
+      this.newShipE,
+      "E",
+      6
+    );
+
+    this.newPlayersHumanAndAi.humanPlayerInitialPlacement(
+      this.newShipF,
+      "F",
+      1
+    );
+
+    this.newPlayersHumanAndAi.humanPlayerInitialPlacement(
+      this.newShipG,
+      "G",
+      4
+    );
+
+    this.newPlayersHumanAndAi.humanPlayerInitialPlacement(
+      this.newShipH,
+      "H",
+      5
+    );
+
+    this.newPlayersHumanAndAi.humanPlayerInitialPlacement(
+      this.newShipI,
+      "I",
+      8
+    );
+
+    this.newPlayersHumanAndAi.humanPlayerInitialPlacement(
+      this.newShipJ,
+      "J",
+      2
+    );
+  }
 
   humanPlayerSelectionsInput() {}
 
@@ -55,7 +119,7 @@ export class Display {
     for (const rowOfHumanGameBoard of boardRows) {
       for (let i = 0; i < 10; i++) {
         const humanPlayerGameBoardCells =
-          this.newPlayersInstance.humanPlayerBoardStatus().board[
+          this.newPlayersHumanAndAi.humanPlayerBoardStatus().board[
             rowOfHumanGameBoard
           ][i];
         if (
