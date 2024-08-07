@@ -15,9 +15,8 @@ export class Display {
         this.humanPlayerShipsInitialPlacement();
 
         console.log(
-          this.newPlayersHumanAndAi.humanPlayerBoardStatus()["board"]["B"][1][
-            "shipName"
-          ]
+          this.newPlayersHumanAndAi.humanPlayerBoardStatus()
+          //["board"]["B"][1]["shipName"]
         );
         this.renderBoardToDisplay();
       });
@@ -40,81 +39,131 @@ export class Display {
       document.querySelector("#shipStartCordsLength")
     );
 
-    let testCords = this.convertCords(
+    // Following code will get the Coordinate data from the Form
+    let shipACords = this.convertCords(
+      shipStartCordsLength.getAll("shipACords")
+    );
+
+    let shipBCords = this.convertCords(
+      shipStartCordsLength.getAll("shipBCords")
+    );
+
+    let shipCCords = this.convertCords(
+      shipStartCordsLength.getAll("shipCCords")
+    );
+
+    let shipDCords = this.convertCords(
       shipStartCordsLength.getAll("shipDCords")
     );
-    console.log(shipStartCordsLength.getAll("shipILength"));
-    console.log(testCords);
 
-    this.newShipA = new Ship("Ship A", 1);
-    this.newShipB = new Ship("Ship B", 2);
-    this.newShipC = new Ship("Ship C", 4);
-    this.newShipD = new Ship("Ship D", 1);
-    this.newShipE = new Ship("Ship E", 1);
-    this.newShipF = new Ship("Ship F", 1);
-    this.newShipG = new Ship("Ship G", 2);
-    this.newShipH = new Ship("Ship H", 3);
-    this.newShipI = new Ship("Ship I", 1);
-    this.newShipJ = new Ship("Ship J", 4);
+    let shipECords = this.convertCords(
+      shipStartCordsLength.getAll("shipECords")
+    );
+
+    let shipFCords = this.convertCords(
+      shipStartCordsLength.getAll("shipFCords")
+    );
+
+    let shipGCords = this.convertCords(
+      shipStartCordsLength.getAll("shipGCords")
+    );
+
+    let shipHCords = this.convertCords(
+      shipStartCordsLength.getAll("shipHCords")
+    );
+
+    let shipICords = this.convertCords(
+      shipStartCordsLength.getAll("shipICords")
+    );
+
+    let shipJCords = this.convertCords(
+      shipStartCordsLength.getAll("shipJCords")
+    );
+
+    // This code will get ship length from the Form
+    let shipALength = parseInt(shipStartCordsLength.getAll("shipALength"));
+    let shipBLength = parseInt(shipStartCordsLength.getAll("shipBLength"));
+    let shipCLength = parseInt(shipStartCordsLength.getAll("shipCLength"));
+    let shipDLength = parseInt(shipStartCordsLength.getAll("shipDLength"));
+    let shipELength = parseInt(shipStartCordsLength.getAll("shipELength"));
+    let shipFLength = parseInt(shipStartCordsLength.getAll("shipFLength"));
+    let shipGLength = parseInt(shipStartCordsLength.getAll("shipGLength"));
+    let shipHLength = parseInt(shipStartCordsLength.getAll("shipHLength"));
+    let shipILength = parseInt(shipStartCordsLength.getAll("shipILength"));
+    let shipJLength = parseInt(shipStartCordsLength.getAll("shipJLength"));
+
+    // console.log(shipStartCordsLength.getAll("shipALength"));
+    // console.log(testCords.number);
+
+    this.newShipA = new Ship("Ship A", shipALength);
+    this.newShipB = new Ship("Ship B", shipBLength);
+    this.newShipC = new Ship("Ship C", shipCLength);
+    this.newShipD = new Ship("Ship D", shipDLength);
+    this.newShipE = new Ship("Ship E", shipELength);
+    this.newShipF = new Ship("Ship F", shipFLength);
+    this.newShipG = new Ship("Ship G", shipGLength);
+    this.newShipH = new Ship("Ship H", shipHLength);
+    this.newShipI = new Ship("Ship I", shipILength);
+    this.newShipJ = new Ship("Ship J", shipJLength);
 
     this.newPlayersHumanAndAi.humanPlayerInitialPlacement(
       this.newShipA,
-      "A",
-      5
+      shipACords.letter,
+      shipACords.number
     );
 
     this.newPlayersHumanAndAi.humanPlayerInitialPlacement(
       this.newShipB,
-      "B",
-      0
+      shipBCords.letter,
+      shipBCords.number
     );
 
     this.newPlayersHumanAndAi.humanPlayerInitialPlacement(
       this.newShipC,
-      "C",
-      5
+      shipCCords.letter,
+      shipCCords.number
     );
 
     this.newPlayersHumanAndAi.humanPlayerInitialPlacement(
       this.newShipD,
-      "D",
-      8
+      shipDCords.letter,
+      shipDCords.number
     );
 
     this.newPlayersHumanAndAi.humanPlayerInitialPlacement(
       this.newShipE,
-      "E",
-      6
+      shipECords.letter,
+      shipECords.number
     );
 
     this.newPlayersHumanAndAi.humanPlayerInitialPlacement(
       this.newShipF,
-      "F",
-      1
+      shipFCords.letter,
+      shipFCords.number
     );
 
     this.newPlayersHumanAndAi.humanPlayerInitialPlacement(
       this.newShipG,
-      "G",
-      4
+      shipGCords.letter,
+      shipGCords.number
     );
 
     this.newPlayersHumanAndAi.humanPlayerInitialPlacement(
       this.newShipH,
-      "H",
-      5
+      shipHCords.letter,
+      shipHCords.number
     );
 
     this.newPlayersHumanAndAi.humanPlayerInitialPlacement(
       this.newShipI,
-      "I",
-      8
+      shipICords.letter,
+      shipICords.number
     );
 
     this.newPlayersHumanAndAi.humanPlayerInitialPlacement(
       this.newShipJ,
-      "J",
-      2
+      shipJCords.letter,
+      shipJCords.number
     );
   }
 
@@ -140,6 +189,7 @@ export class Display {
           this.newPlayersHumanAndAi.humanPlayerBoardStatus().board[
             rowOfHumanGameBoard
           ][i];
+
         if (
           humanPlayerGameBoardCells !== null &&
           humanPlayerGameBoardCells !== "X"
