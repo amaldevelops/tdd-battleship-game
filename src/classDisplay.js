@@ -27,7 +27,25 @@ export class Display {
     // this.humanPlayerGameBoard.placeShips(ShipA, "A", 5);
   }
 
+  convertCords(inputArray) {
+    const inputString = inputArray[0];
+    const letter = inputString[0];
+    const number = parseInt(inputString.substring(2));
+
+    return { letter, number };
+  }
+
   humanPlayerShipsInitialPlacement() {
+    const shipStartCordsLength = new FormData(
+      document.querySelector("#shipStartCordsLength")
+    );
+
+    let testCords = this.convertCords(
+      shipStartCordsLength.getAll("shipDCords")
+    );
+    console.log(shipStartCordsLength.getAll("shipILength"));
+    console.log(testCords);
+
     this.newShipA = new Ship("Ship A", 1);
     this.newShipB = new Ship("Ship B", 2);
     this.newShipC = new Ship("Ship C", 4);
