@@ -12,7 +12,7 @@ export class Display {
       startGameButton.addEventListener("click", () => {
         this.updateGameStatusOnDisplay("Yayy Game Started!");
         this.newPlayersInstance = new Player();
-        this.newShipA = new Ship("Ship A", 1);
+        this.newShipA = new Ship("Ship A", 6);
         // console.log(this.newPlayersInstance.humanPlayer());
         this.humanPlayerShipsInitialPlacement();
 
@@ -22,7 +22,9 @@ export class Display {
           1
         );
         console.log(
-          this.newPlayersInstance.humanPlayerBoardStatus()["board"]["B"]
+          this.newPlayersInstance.humanPlayerBoardStatus()["board"]["B"][1][
+            "shipName"
+          ]
         );
         this.renderBoardToDisplay();
       });
@@ -37,24 +39,34 @@ export class Display {
   humanPlayerSelectionsInput() {}
 
   renderBoardToDisplay() {
-    const HumanA0 = document.querySelector("#humanA0");
+    const boardRows = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+    const elements = [];
 
-    for (let i = 0; i < 10; i++) {
-      document.querySelector("#humanA" + i).textContent =
-        this.newShipA.shipStatus().shipName;
-      document.querySelector("#humanB" + i).textContent =
-        this.newPlayersInstance.humanPlayerBoardStatus()["board"]["B"][i];
-      document.querySelector("#humanC" + i).textContent = "Yo Matey";
-      document.querySelector("#humanD" + i).textContent = "Yo Matey";
-      document.querySelector("#humanE" + i).textContent = "Yo Matey";
-      document.querySelector("#humanF" + i).textContent = "Yo Matey";
-      document.querySelector("#humanG" + i).textContent = "Yo Matey";
-      document.querySelector("#humanH" + i).textContent = "Yo Matey";
-      document.querySelector("#humanI" + i).textContent = "Yo Matey";
-      document.querySelector("#humanJ" + i).textContent = "Yo Matey";
+    // Cache DOM elements for efficiency
+    for (const boardRowNum of boardRows) {
+      elements[boardRowNum] = [];
+      for (let i = 0; i < 10; i++) {
+        elements[boardRowNum][i] = document.querySelector(
+          `#human${boardRowNum}${i}`
+        );
+      }
     }
 
-    HumanA0.textContent = "Yo Matey";
+    for (const rowOfHumanGameBoard of boardRows) {
+      for (let i = 0; i < 10; i++) {
+        const humanPlayerGameBoardCells =
+          this.newPlayersInstance.humanPlayerBoardStatus().board[
+            rowOfHumanGameBoard
+          ][i];
+        if (
+          humanPlayerGameBoardCells !== null &&
+          humanPlayerGameBoardCells !== "X"
+        ) {
+          elements[rowOfHumanGameBoard][i].textContent =
+            humanPlayerGameBoardCells.shipName;
+        }
+      }
+    }
   }
 
   updateGameStatusOnDisplay(Status) {
