@@ -14,11 +14,17 @@ export class Display {
         this.newPlayersHumanAndAi = new Player();
         this.humanPlayerShipsInitialPlacement();
 
+        this.newPlayersHumanAndAi.aiPlayerInitialRandomShipPlacement();
+
+
+        // aiPlayerCurrentGameBoard()
+
         console.log(
-          this.newPlayersHumanAndAi.humanPlayerBoardStatus()
+          this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard()
           //["board"]["B"][1]["shipName"]
         );
         this.renderBoardToDisplay();
+        this.humanPlayerAiBoardClicks()
       });
     });
 
@@ -167,7 +173,28 @@ export class Display {
     );
   }
 
-  humanPlayerSelectionsInput() {}
+  humanPlayerAiBoardClicks() {
+    // const softwareA0=document.querySelector("#softwareA5");
+    // softwareA0.addEventListener('click',()=>{
+    //     alert("softwareA5 Clicked");
+    // });
+
+    const aiPlayerGameBoardTable = document.getElementById('aiPlayerGameBoardTable');
+    aiPlayerGameBoardTable.addEventListener('click', (playerClicks) => {
+    const target = playerClicks.target;
+    if (target.tagName === 'TD') {
+        // Handle the click event for the table data cell
+        console.log(target.id);
+        // console.log(target.id.substring(8));
+        let converted=[target.id.substring(8)];
+        // let converted=['A',2]
+        console.log(this.convertCords(converted));
+
+    }
+    });
+
+    
+  }
 
   renderBoardToDisplay() {
     const boardRows = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
@@ -186,7 +213,7 @@ export class Display {
     for (const rowOfHumanGameBoard of boardRows) {
       for (let i = 0; i < 10; i++) {
         const humanPlayerGameBoardCells =
-          this.newPlayersHumanAndAi.humanPlayerBoardStatus().board[
+          this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard().board[
             rowOfHumanGameBoard
           ][i];
 
@@ -195,12 +222,20 @@ export class Display {
           humanPlayerGameBoardCells !== "X"
         ) {
           elements[rowOfHumanGameBoard][i].textContent =
-            humanPlayerGameBoardCells.shipName;
+            humanPlayerGameBoardCells.shipName+" "+"Length:"+ humanPlayerGameBoardCells.shipLength +
+            " Hits:"+humanPlayerGameBoardCells.numberOfHits+" Sunk:"+humanPlayerGameBoardCells.shipSunk;
+
+            
         } else {
           elements[rowOfHumanGameBoard][i].textContent = null;
         }
       }
     }
+  }
+
+  aiPlayerInitialBoardPlacement()
+  {
+
   }
 
   updateGameStatusOnDisplay(Status) {

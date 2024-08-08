@@ -1,46 +1,41 @@
 /* This is the main CSS File */
-*
-{
+* {
   font-size: 10px;
 }
 h1 {
   color: #b32626;
 }
 
-table,th,td{
+table,
+th,
+td {
   border: 1px solid;
   border-collapse: collapse;
-
 }
 
-td{
-  width:1rem;
-  height: 1rem;
-  padding:0.25rem;
+td {
+  width: 5rem;
+  height: 5rem;
+  padding: 0.25rem;
   text-align: center;
 }
 
-.labelsRow
-{
+.labelsRow {
   background-color: #9e8686;
 }
 
-.labelsColumn
-{
+.labelsColumn {
   background-color: #b3c0d7;
 }
 
-.shipsNotSunk
-{
+.shipsNotSunk {
   background-color: #1ad223;
 }
 
-.missedAttacks
-{
+.missedAttacks {
   background-color: #252a31;
 }
 
-.successfulAttacks
-{
+.successfulAttacks {
   background-color: #ff0000;
 }
