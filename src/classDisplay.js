@@ -200,7 +200,11 @@ export class Display {
 
         else{
             elements[rowOfHumanGameBoard][i].textContent =null;
+<<<<<<< HEAD
             \
+=======
+            
+>>>>>>> a777d7f (Fixed Display update bug for human player)
         }
       }
     }

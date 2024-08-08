@@ -125,7 +125,7 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \*****************************/
 /***/ (() => {
 
-eval("throw new Error(\"Module parse failed: Expecting Unicode escape sequence \\\\uXXXX (203:13)\\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\\n|         else{\\n|             elements[rowOfHumanGameBoard][i].textContent =null;\\n>             \\\\\\n|         }\\n|       }\");\n\n//# sourceURL=webpack://BattleShip_game_Development_using_TDD/./src/classDisplay.js?");
+eval("throw new Error(\"Module parse failed: Unexpected token (203:0)\\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\\n|         else{\\n|             elements[rowOfHumanGameBoard][i].textContent =null;\\n> <<<<<<< HEAD\\n|             \\\\\\n| =======\");\n\n//# sourceURL=webpack://BattleShip_game_Development_using_TDD/./src/classDisplay.js?");
 
 /***/ }),
 
