@@ -196,15 +196,8 @@ export class Display {
         ) {
           elements[rowOfHumanGameBoard][i].textContent =
             humanPlayerGameBoardCells.shipName;
-        }
-
-        else{
-            elements[rowOfHumanGameBoard][i].textContent =null;
-<<<<<<< HEAD
-            \
-=======
-            
->>>>>>> a777d7f (Fixed Display update bug for human player)
+        } else {
+          elements[rowOfHumanGameBoard][i].textContent = null;
         }
       }
     }
