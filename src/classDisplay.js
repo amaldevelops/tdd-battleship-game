@@ -197,6 +197,11 @@ export class Display {
           elements[rowOfHumanGameBoard][i].textContent =
             humanPlayerGameBoardCells.shipName;
         }
+
+        else{
+            elements[rowOfHumanGameBoard][i].textContent =null;
+            \
+        }
       }
     }
   }
