@@ -4,16 +4,14 @@
 //Following will import the CSS file used to style the project
 import "./mainStyleSheet.css";
 
-import {Display} from "./classDisplay"
+import { Display } from "./classDisplay";
 import { Ship } from "./classShip";
 import { Gameboard } from "./classGameBoard";
 import { Player } from "./classPlayers";
 
-
-const gameInitialization=new Display;
+const gameInitialization = new Display();
 
 gameInitialization.startGame();
-
 
 //ES Module Exports
 export { Ship, Gameboard, Player }; //Class exports

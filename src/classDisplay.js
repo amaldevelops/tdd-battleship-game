@@ -16,7 +16,6 @@ export class Display {
 
         this.newPlayersHumanAndAi.aiPlayerInitialRandomShipPlacement();
 
-
         // aiPlayerCurrentGameBoard()
 
         console.log(
@@ -24,7 +23,7 @@ export class Display {
           //["board"]["B"][1]["shipName"]
         );
         this.renderBoardToDisplay();
-        this.humanPlayerAiBoardClicks()
+        this.humanPlayerAiBoardClicks();
       });
     });
 
@@ -179,21 +178,44 @@ export class Display {
     //     alert("softwareA5 Clicked");
     // });
 
-    const aiPlayerGameBoardTable = document.getElementById('aiPlayerGameBoardTable');
-    aiPlayerGameBoardTable.addEventListener('click', (playerClicks) => {
-    const target = playerClicks.target;
-    if (target.tagName === 'TD') {
+    const aiPlayerGameBoardTable = document.getElementById(
+      "aiPlayerGameBoardTable"
+    );
+    aiPlayerGameBoardTable.addEventListener("click", (playerClicks) => {
+      const target = playerClicks.target;
+      if (target.tagName === "TD") {
         // Handle the click event for the table data cell
-        console.log(target.id);
-        // console.log(target.id.substring(8));
-        let converted=[target.id.substring(8)];
-        // let converted=['A',2]
-        console.log(this.convertCords(converted));
 
-    }
+        let converted = [target.id.substring(8)];
+        let attackedCoordinates = this.convertCords(converted);
+        console.log(attackedCoordinates.number);
+
+        if (
+          this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard().board[
+            attackedCoordinates.letter
+          ][attackedCoordinates.number] === null
+        ) {
+          this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard().board[
+            attackedCoordinates.letter
+          ][attackedCoordinates.number] = "Hit";
+        } else if (
+          this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard().board[
+            attackedCoordinates.letter
+          ][attackedCoordinates.number] === "Hit"
+        ) {
+          alert("Location already clicked");
+        } else {
+          this.newPlayersHumanAndAi
+            .humanPlayerCurrentGameBoard()
+            .board[
+              attackedCoordinates.letter
+            ][attackedCoordinates.number].hit();
+        }
+        console.log(this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard());
+
+        this.renderBoardToDisplay();
+      }
     });
-
-    
   }
 
   renderBoardToDisplay() {
@@ -222,10 +244,14 @@ export class Display {
           humanPlayerGameBoardCells !== "X"
         ) {
           elements[rowOfHumanGameBoard][i].textContent =
-            humanPlayerGameBoardCells.shipName+" "+"Length:"+ humanPlayerGameBoardCells.shipLength +
-            " Hits:"+humanPlayerGameBoardCells.numberOfHits+" Sunk:"+humanPlayerGameBoardCells.shipSunk;
-
-            
+            humanPlayerGameBoardCells.shipName +
+            " " +
+            "Length:" +
+            humanPlayerGameBoardCells.shipLength +
+            " Hits:" +
+            humanPlayerGameBoardCells.numberOfHits +
+            " Sunk:" +
+            humanPlayerGameBoardCells.shipSunk;
         } else {
           elements[rowOfHumanGameBoard][i].textContent = null;
         }
@@ -233,10 +259,7 @@ export class Display {
     }
   }
 
-  aiPlayerInitialBoardPlacement()
-  {
-
-  }
+  aiPlayerInitialBoardPlacement() {}
 
   updateGameStatusOnDisplay(Status) {
     const gameStatusDisplay = document.querySelector("#gameStatusDisplay");
