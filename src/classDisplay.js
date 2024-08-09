@@ -181,12 +181,12 @@ export class Display {
   }
 
   humanPlayerAiBoardClicks() {
-    let aiPlayerGameBoardTable= document.getElementById(
+    let aiPlayerGameBoardTable = document.getElementById(
       "aiPlayerGameBoardTable"
     );
     aiPlayerGameBoardTable.addEventListener("click", (playerClicks) => {
       const target = playerClicks.target;
-      
+
       if (target.tagName === "TD") {
         // Handle the click event for the table data cell
 
@@ -195,24 +195,20 @@ export class Display {
         console.log(attackedCoordinates.number);
 
         this.currentBoardAttackCoordinates =
-          this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard().board[
+          this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard()[
             attackedCoordinates.letter
           ][attackedCoordinates.number];
 
         if (this.currentBoardAttackCoordinates === null) {
-          this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard().board[
+          this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard()[
             attackedCoordinates.letter
           ][attackedCoordinates.number] = this.emptySpace;
-        } else if (
-            this.currentBoardAttackCoordinates === this.emptySpace
-        ) {
-          this.updateGameStatusOnDisplay("Location already clicked")
+        } else if (this.currentBoardAttackCoordinates === this.emptySpace) {
+          this.updateGameStatusOnDisplay("Location already clicked");
         } else {
           this.newPlayersHumanAndAi
             .humanPlayerCurrentGameBoard()
-            .board[
-              attackedCoordinates.letter
-            ][attackedCoordinates.number].hit();
+            [attackedCoordinates.letter][attackedCoordinates.number].hit();
         }
         console.log(this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard());
 
@@ -238,7 +234,7 @@ export class Display {
     for (const rowOfHumanGameBoard of boardRows) {
       for (let i = 0; i < 10; i++) {
         const humanPlayerGameBoardCells =
-          this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard().board[
+          this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard()[
             rowOfHumanGameBoard
           ][i];
 
