@@ -10,21 +10,16 @@ export class Display {
 
     document.addEventListener("DOMContentLoaded", () => {
       startGameButton.addEventListener("click", () => {
-        this.updateGameStatusOnDisplay("Yayy Game Started!");
         this.newPlayersHumanAndAi = new Player();
         this.humanPlayerShipsInitialPlacement();
 
         this.newPlayersHumanAndAi.aiPlayerInitialRandomShipPlacement();
 
-        // aiPlayerCurrentGameBoard()
-
-        console.log(
-          this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard()
-          //["board"]["B"][1]["shipName"]
-        );
+        console.log(this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard());
 
         this.renderBoardToDisplay();
         this.humanPlayerAiBoardClicks();
+        this.updateGameStatusOnDisplay("Yayy Game Started!");
 
         this.emptySpace = {
           shipName: "EMPTY",
@@ -34,9 +29,6 @@ export class Display {
         };
       });
     });
-
-    // const ShipA = new Ship("ShipA", 1);
-    // this.humanPlayerGameBoard.placeShips(ShipA, "A", 5);
   }
 
   convertCords(inputArray) {
@@ -104,9 +96,6 @@ export class Display {
     let shipHLength = parseInt(shipStartCordsLength.getAll("shipHLength"));
     let shipILength = parseInt(shipStartCordsLength.getAll("shipILength"));
     let shipJLength = parseInt(shipStartCordsLength.getAll("shipJLength"));
-
-    // console.log(shipStartCordsLength.getAll("shipALength"));
-    // console.log(testCords.number);
 
     this.newShipA = new Ship("Ship A", shipALength);
     this.newShipB = new Ship("Ship B", shipBLength);
@@ -213,6 +202,7 @@ export class Display {
         console.log(this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard());
 
         this.renderBoardToDisplay();
+        this.updateGameStatusOnDisplay();
       }
     });
   }
@@ -262,6 +252,28 @@ export class Display {
 
   updateGameStatusOnDisplay(Status) {
     const gameStatusDisplay = document.querySelector("#gameStatusDisplay");
+    const humanPlayerTotalShips = document.querySelector(
+      "#humanPlayerTotalShips"
+    );
+    const humanPlayerSunkShips = document.querySelector(
+      "#humanPlayerSunkShips"
+    );
+    const aIPlayerTotalShips = document.querySelector("#aIPlayerTotalShips");
+    const AiPlayerSunkShips = document.querySelector("#AiPlayerSunkShips");
     gameStatusDisplay.textContent = Status;
+    humanPlayerTotalShips.textContent =
+      "Human Player Total Ship Fleet at start :" + 10;
+    humanPlayerSunkShips.textContent =
+      "Human Player currently remaining Ships: " +
+      this.newPlayersHumanAndAi.humanPlayerGameBoard.allShipsHealth();
+    aIPlayerTotalShips.textContent =
+      "Ai Player Total Ship Fleet at start: " + 10;
+    AiPlayerSunkShips.textContent =
+      "Ai currently remaining Ships: " +
+      this.newPlayersHumanAndAi.aiPlayerGameBoard.allShipsHealth();
+
+    console.dir(
+      this.newPlayersHumanAndAi.humanPlayerGameBoard.allShipsHealth()
+    );
   }
 }
