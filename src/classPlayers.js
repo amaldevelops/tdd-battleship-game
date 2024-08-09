@@ -9,7 +9,7 @@ class Player {
   }
 
   humanPlayerCurrentGameBoard() {
-    return this.humanPlayerGameBoard;
+    return this.humanPlayerGameBoard.gameBoardStatus();
   }
 
   humanPlayerInitialPlacement(ship, rowCords, columnCords) {

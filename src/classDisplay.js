@@ -22,8 +22,16 @@ export class Display {
           this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard()
           //["board"]["B"][1]["shipName"]
         );
+
         this.renderBoardToDisplay();
         this.humanPlayerAiBoardClicks();
+
+        this.emptySpace = {
+          shipName: "EMPTY",
+          shipLength: "XXXX",
+          numberOfHits: "XXXX",
+          shipSunk: "XXXX",
+        };
       });
     });
 
@@ -173,16 +181,12 @@ export class Display {
   }
 
   humanPlayerAiBoardClicks() {
-    // const softwareA0=document.querySelector("#softwareA5");
-    // softwareA0.addEventListener('click',()=>{
-    //     alert("softwareA5 Clicked");
-    // });
-
-    const aiPlayerGameBoardTable = document.getElementById(
+    let aiPlayerGameBoardTable= document.getElementById(
       "aiPlayerGameBoardTable"
     );
     aiPlayerGameBoardTable.addEventListener("click", (playerClicks) => {
       const target = playerClicks.target;
+      
       if (target.tagName === "TD") {
         // Handle the click event for the table data cell
 
@@ -190,20 +194,19 @@ export class Display {
         let attackedCoordinates = this.convertCords(converted);
         console.log(attackedCoordinates.number);
 
-        if (
+        this.currentBoardAttackCoordinates =
           this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard().board[
             attackedCoordinates.letter
-          ][attackedCoordinates.number] === null
-        ) {
+          ][attackedCoordinates.number];
+
+        if (this.currentBoardAttackCoordinates === null) {
           this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard().board[
             attackedCoordinates.letter
-          ][attackedCoordinates.number] = "Hit";
+          ][attackedCoordinates.number] = this.emptySpace;
         } else if (
-          this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard().board[
-            attackedCoordinates.letter
-          ][attackedCoordinates.number] === "Hit"
+            this.currentBoardAttackCoordinates === this.emptySpace
         ) {
-          alert("Location already clicked");
+          this.updateGameStatusOnDisplay("Location already clicked")
         } else {
           this.newPlayersHumanAndAi
             .humanPlayerCurrentGameBoard()
@@ -241,7 +244,7 @@ export class Display {
 
         if (
           humanPlayerGameBoardCells !== null &&
-          humanPlayerGameBoardCells !== "X"
+          humanPlayerGameBoardCells !== "Hit"
         ) {
           elements[rowOfHumanGameBoard][i].textContent =
             humanPlayerGameBoardCells.shipName +

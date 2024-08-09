@@ -274,13 +274,13 @@ test("Test 15: Gameboards should be able to report whether or not all of their s
 test("Test 16: There will be two types of players in the game, human players and computer/Ai playersEach player object should contain its own gameboard, this test will check for human player gameBoard is created properly", () => {
   const new2Players = new Player();
 
-  expect(new2Players.humanPlayer()).toStrictEqual(testBoard);
+  expect(new2Players.humanPlayerCurrentGameBoard()).toStrictEqual(testBoard);
 });
 
 test("Test 17: There will be two types of players in the game, human players and computer/Ai playersEach player object should contain its own gameboard, this test will check for AI player gameBoard is created properly", () => {
   const new2Players = new Player();
 
-  expect(new2Players.aiPlayer()).toStrictEqual(testBoard);
+  expect(new2Players.aiPlayerCurrentGameBoard()).toStrictEqual(testBoard);
 });
 
 test("Test 18: At the game start 10 Ship class instances will be created name ShipA,ShipB,ShipC,ShipD,ShipE,ShipF,ShipG,ShipH,ShipI,ShipJ, this test will check whether they are correctly created", () => {
