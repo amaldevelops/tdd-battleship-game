@@ -17,7 +17,8 @@ export class Display {
 
         console.log(this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard());
 
-        this.renderBoardToDisplay();
+        this.humanPlayerRenderBoardToDisplay();
+        this.aiPlayerRenderBoardToDisplay();
         this.humanPlayerAiBoardClicks();
         this.updateGameStatusOnDisplay("Yayy Game Started!");
 
@@ -172,6 +173,9 @@ export class Display {
   humanPlayerAiBoardClicks() {
     let aiPlayerGameBoardTable = document.getElementById(
       "aiPlayerGameBoardTable"
+
+      // let aiPlayerGameBoardTable = document.getElementById(
+      // "humanPlayerGameBoardTable"
     );
     aiPlayerGameBoardTable.addEventListener("click", (playerClicks) => {
       const target = playerClicks.target;
@@ -179,35 +183,40 @@ export class Display {
       if (target.tagName === "TD") {
         // Handle the click event for the table data cell
 
+        // alert(target.id);
+
+        // document.getElementById(target.id).removeEventListener("click",alert("Already Clicked"));
+
         let converted = [target.id.substring(8)];
         let attackedCoordinates = this.convertCords(converted);
         console.log(attackedCoordinates.number);
 
         this.currentBoardAttackCoordinates =
-          this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard()[
+          this.newPlayersHumanAndAi.aiPlayerCurrentGameBoard()[
             attackedCoordinates.letter
           ][attackedCoordinates.number];
 
         if (this.currentBoardAttackCoordinates === null) {
-          this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard()[
+          this.newPlayersHumanAndAi.aiPlayerCurrentGameBoard()[
             attackedCoordinates.letter
           ][attackedCoordinates.number] = this.emptySpace;
+          document.getElementById(target.id).classList.add("missedAttacks");
         } else if (this.currentBoardAttackCoordinates === this.emptySpace) {
           this.updateGameStatusOnDisplay("Location already clicked");
         } else {
           this.newPlayersHumanAndAi
-            .humanPlayerCurrentGameBoard()
+            .aiPlayerCurrentGameBoard()
             [attackedCoordinates.letter][attackedCoordinates.number].hit();
         }
-        console.log(this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard());
+        console.log(this.newPlayersHumanAndAi.aiPlayerCurrentGameBoard());
 
-        this.renderBoardToDisplay();
+        this.humanPlayerRenderBoardToDisplay();
         this.updateGameStatusOnDisplay();
       }
     });
   }
 
-  renderBoardToDisplay() {
+  humanPlayerRenderBoardToDisplay() {
     const boardRows = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
     const elements = [];
 
@@ -248,7 +257,46 @@ export class Display {
     }
   }
 
-  aiPlayerInitialBoardPlacement() {}
+  aiPlayerRenderBoardToDisplay() {
+    const boardRows = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+    const elements = [];
+
+    // Cache DOM elements for efficiency
+    for (const boardRowNum of boardRows) {
+      elements[boardRowNum] = [];
+      for (let i = 0; i < 10; i++) {
+        elements[boardRowNum][i] = document.querySelector(
+          `#software${boardRowNum}-${i}`
+        );
+      }
+    }
+
+    for (const rowOfAiGameBoard of boardRows) {
+      for (let i = 0; i < 10; i++) {
+        const aiPlayerGameBoardCells =
+          this.newPlayersHumanAndAi.aiPlayerCurrentGameBoard()[
+            rowOfAiGameBoard
+          ][i];
+
+        if (
+          aiPlayerGameBoardCells !== null &&
+          aiPlayerGameBoardCells !== "Hit"
+        ) {
+          elements[rowOfAiGameBoard][i].textContent =
+            aiPlayerGameBoardCells.shipName +
+            " " +
+            "Length:" +
+            aiPlayerGameBoardCells.shipLength +
+            " Hits:" +
+            aiPlayerGameBoardCells.numberOfHits +
+            " Sunk:" +
+            aiPlayerGameBoardCells.shipSunk;
+        } else {
+          elements[rowOfAiGameBoard][i].textContent = null;
+        }
+      }
+    }
+  }
 
   updateGameStatusOnDisplay(Status) {
     const gameStatusDisplay = document.querySelector("#gameStatusDisplay");
