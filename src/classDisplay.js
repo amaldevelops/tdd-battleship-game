@@ -5,31 +5,8 @@ import { Player } from "./classPlayers";
 export class Display {
   constructor() {}
 
-  startGame() {
-    const startGameButton = document.querySelector("#startGameButton");
-
-    document.addEventListener("DOMContentLoaded", () => {
-      startGameButton.addEventListener("click", () => {
-        this.newPlayersHumanAndAi = new Player();
-        this.humanPlayerShipsInitialPlacement();
-
-        this.newPlayersHumanAndAi.aiPlayerInitialRandomShipPlacement();
-
-        console.log(this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard());
-
-        this.humanPlayerRenderBoardToDisplay();
-        this.aiPlayerRenderBoardToDisplay();
-        this.humanPlayerAiBoardClicks();
-        this.updateGameStatusOnDisplay("Yayy Game Started!");
-
-        this.emptySpace = {
-          shipName: "EMPTY",
-          shipLength: "XXXX",
-          numberOfHits: "XXXX",
-          shipSunk: "XXXX",
-        };
-      });
-    });
+  getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
   }
 
   convertCords(inputArray) {
@@ -38,6 +15,63 @@ export class Display {
     const number = parseInt(inputString.substring(2));
 
     return { letter, number };
+  }
+
+  startGame() {
+    this.emptySpace = {
+      shipName: "EMPTY",
+      shipLength: "XXXX",
+      numberOfHits: "XXXX",
+      shipSunk: "XXXX",
+    };
+    const startGameButton = document.querySelector("#startGameButton");
+
+    document.addEventListener("DOMContentLoaded", () => {
+      startGameButton.addEventListener("click", () => {
+        this.newPlayersHumanAndAi = new Player();
+        this.humanPlayerShipsInitialPlacement();
+        this.newPlayersHumanAndAi.aiPlayerInitialRandomShipPlacement();
+
+        // console.log(this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard());
+
+        // this.humanPlayerRenderBoardToDisplay();
+        this.aiPlayerRenderBoardToDisplay();
+        this.updateGameStatusOnDisplay("Yayy Game Started!");
+        this.humanPlayerAiBoardClicks();
+
+        this.gameLogic();
+      });
+    });
+  }
+
+  gameLogic() {
+    let isHumanTurn = true;
+
+    while (
+      this.newPlayersHumanAndAi.humanPlayerGameBoard.allShipsHealth() !== 0 &&
+      this.newPlayersHumanAndAi.aiPlayerGameBoard.allShipsHealth() !== 0
+    ) {
+      this.updateGameStatusOnDisplay("Game On mate !");
+
+      if (isHumanTurn) {
+        this.humanPlayerGamePlay();
+        this.aiPlayerRenderBoardToDisplay();
+        isHumanTurn = false;
+      } else {
+        this.aiPlayerGamePlay();
+        this.humanPlayerRenderBoardToDisplay();
+        isHumanTurn = true;
+      }
+    }
+
+    // Check for game over conditions
+    if (this.newPlayersHumanAndAi.humanPlayerGameBoard.allShipsHealth() === 0) {
+      this.updateGameStatusOnDisplay("Computer Won !");
+    } else if (
+      this.newPlayersHumanAndAi.aiPlayerGameBoard.allShipsHealth() === 0
+    ) {
+      this.updateGameStatusOnDisplay("Human Won !");
+    }
   }
 
   humanPlayerShipsInitialPlacement() {
@@ -173,9 +207,6 @@ export class Display {
   humanPlayerAiBoardClicks() {
     let aiPlayerGameBoardTable = document.getElementById(
       "aiPlayerGameBoardTable"
-
-      // let aiPlayerGameBoardTable = document.getElementById(
-      // "humanPlayerGameBoardTable"
     );
     aiPlayerGameBoardTable.addEventListener("click", (playerClicks) => {
       const target = playerClicks.target;
@@ -183,13 +214,9 @@ export class Display {
       if (target.tagName === "TD") {
         // Handle the click event for the table data cell
 
-        // alert(target.id);
-
-        // document.getElementById(target.id).removeEventListener("click",alert("Already Clicked"));
-
         let converted = [target.id.substring(8)];
         let attackedCoordinates = this.convertCords(converted);
-        console.log(attackedCoordinates.number);
+        // console.log(attackedCoordinates.number);
 
         this.currentBoardAttackCoordinates =
           this.newPlayersHumanAndAi.aiPlayerCurrentGameBoard()[
@@ -208,12 +235,70 @@ export class Display {
             .aiPlayerCurrentGameBoard()
             [attackedCoordinates.letter][attackedCoordinates.number].hit();
         }
-        console.log(this.newPlayersHumanAndAi.aiPlayerCurrentGameBoard());
+        // console.log(this.newPlayersHumanAndAi.aiPlayerCurrentGameBoard());
 
-        this.humanPlayerRenderBoardToDisplay();
+        this.aiPlayerRenderBoardToDisplay();
         this.updateGameStatusOnDisplay();
       }
     });
+  }
+  humanPlayerGamePlay() {
+    this.humanPlayerAiBoardClicks();
+    // let aiPlayerGameBoardTable = document.getElementById(
+    //   "aiPlayerGameBoardTable"
+    // );
+
+    // aiPlayerGameBoardTable.addEventListener("click", (event) => {
+    //   const target = event.target;
+
+    //   if (target.tagName === "TD") {
+    //     console.log("AI Turn");
+    //     return;
+    //   }
+    // });
+  }
+
+  aiPlayerGamePlay() {
+    const boardRows = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+    let randomColumnCords = this.getRndInteger(0, 9);
+    let randomRowCords = this.getRndInteger(0, 10);
+
+    this.currentBoardAttackCoordinates =
+      this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard()[
+        boardRows[randomRowCords]
+      ][randomColumnCords];
+
+    // alert(this.currentBoardAttackCoordinates);
+
+    if (this.currentBoardAttackCoordinates === null) {
+      this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard()[
+        boardRows[randomRowCords]
+      ][randomColumnCords] = this.emptySpace;
+
+      // document
+      //   .getElementById(
+      //     this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard()[
+      //       boardRows[randomRowCords]
+      //     ][randomColumnCords]
+      //   )
+      //   .classList.add("missedAttacks");
+
+      console.log(
+        this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard()[
+          boardRows[randomRowCords]
+        ][randomColumnCords]
+      );
+    } else if (this.currentBoardAttackCoordinates === this.emptySpace) {
+      this.updateGameStatusOnDisplay("Location already clicked");
+    } else {
+      this.newPlayersHumanAndAi
+        .humanPlayerCurrentGameBoard()
+        [boardRows[randomRowCords]][randomColumnCords].hit();
+    }
+    console.log(this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard());
+
+    this.updateGameStatusOnDisplay();
+    // this.humanPlayerRenderBoardToDisplay();
   }
 
   humanPlayerRenderBoardToDisplay() {
@@ -227,6 +312,7 @@ export class Display {
         elements[boardRowNum][i] = document.querySelector(
           `#human${boardRowNum}${i}`
         );
+        // console.log(`#human${boardRowNum}${i}`)
       }
     }
 
@@ -237,10 +323,7 @@ export class Display {
             rowOfHumanGameBoard
           ][i];
 
-        if (
-          humanPlayerGameBoardCells !== null &&
-          humanPlayerGameBoardCells !== "Hit"
-        ) {
+        if (humanPlayerGameBoardCells !== null) {
           elements[rowOfHumanGameBoard][i].textContent =
             humanPlayerGameBoardCells.shipName +
             " " +
@@ -250,6 +333,10 @@ export class Display {
             humanPlayerGameBoardCells.numberOfHits +
             " Sunk:" +
             humanPlayerGameBoardCells.shipSunk;
+        } else if (humanPlayerGameBoardCells === this.emptySpace) {
+          document
+            .getElementById(elements[rowOfHumanGameBoard][i])
+            .classList.add("missedAttacks");
         } else {
           elements[rowOfHumanGameBoard][i].textContent = null;
         }
@@ -280,7 +367,7 @@ export class Display {
 
         if (
           aiPlayerGameBoardCells !== null &&
-          aiPlayerGameBoardCells !== "Hit"
+          aiPlayerGameBoardCells !== this.emptySpace
         ) {
           elements[rowOfAiGameBoard][i].textContent =
             aiPlayerGameBoardCells.shipName +
@@ -320,8 +407,8 @@ export class Display {
       "Ai currently remaining Ships: " +
       this.newPlayersHumanAndAi.aiPlayerGameBoard.allShipsHealth();
 
-    console.dir(
-      this.newPlayersHumanAndAi.humanPlayerGameBoard.allShipsHealth()
-    );
+    // console.dir(
+    //   this.newPlayersHumanAndAi.humanPlayerGameBoard.allShipsHealth()
+    // );
   }
 }
