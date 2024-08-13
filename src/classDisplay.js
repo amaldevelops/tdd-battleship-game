@@ -20,7 +20,6 @@ export class Display {
   }
 
   startGame() {
-    
     this.emptySpace = {
       shipName: "EMPTY",
       shipLength: "XXXX",
@@ -31,8 +30,6 @@ export class Display {
 
     document.addEventListener("DOMContentLoaded", () => {
       startGameButton.addEventListener("click", () => {
-        
-
         this.newPlayersHumanAndAi = new Player();
         this.humanPlayerShipsInitialPlacement();
         this.newPlayersHumanAndAi.aiPlayerInitialRandomShipPlacement();
@@ -40,20 +37,18 @@ export class Display {
         this.updateGameStatusOnDisplay("Yayy Game Started!");
         this.humanPlayerAiBoardClicks();
 
-        this.resetGame()
+        this.resetGame();
 
         this.gameLogic();
       });
     });
   }
 
-  resetGame()
-  {
-    const resetGameButton=document.querySelector("#resetGameButton");
-    resetGameButton.addEventListener("click",()=>{
+  resetGame() {
+    const resetGameButton = document.querySelector("#resetGameButton");
+    resetGameButton.addEventListener("click", () => {
       window.location.reload();
     });
-    
   }
 
   gameLogic() {
@@ -219,7 +214,6 @@ export class Display {
 
         let converted = [target.id.substring(8)];
         let attackedCoordinates = this.convertCords(converted);
-        // console.log(attackedCoordinates.number);
 
         this.currentBoardAttackCoordinates =
           this.newPlayersHumanAndAi.aiPlayerCurrentGameBoard()[
@@ -233,14 +227,12 @@ export class Display {
           document.getElementById(target.id).classList.add("missedAttacks");
         } else if (this.currentBoardAttackCoordinates === this.emptySpace) {
           this.updateGameStatusOnDisplay("Location already clicked");
-
         } else {
           this.newPlayersHumanAndAi
             .aiPlayerCurrentGameBoard()
             [attackedCoordinates.letter][attackedCoordinates.number].hit();
-            document.getElementById(target.id).classList.add("successfulAttacks");
+          document.getElementById(target.id).classList.add("successfulAttacks");
         }
-        // console.log(this.newPlayersHumanAndAi.aiPlayerCurrentGameBoard());
 
         this.aiPlayerRenderBoardToDisplay();
         this.updateGameStatusOnDisplay();
@@ -248,7 +240,6 @@ export class Display {
     });
   }
   humanPlayerGamePlay() {
-    // this.humanPlayerAiBoardClicks();
     let aiPlayerGameBoardTable = document.getElementById(
       "aiPlayerGameBoardTable"
     );
@@ -257,7 +248,6 @@ export class Display {
       const target = event.target;
 
       if (target.tagName === "TD") {
-        console.log("AI Turn");
         this.isHumanTurn = false;
         this.gameLogic();
       }
@@ -274,18 +264,10 @@ export class Display {
         boardRows[randomRowCords]
       ][randomColumnCords];
 
-    // alert(this.currentBoardAttackCoordinates);
-
     if (this.currentBoardAttackCoordinates === null) {
       this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard()[
         boardRows[randomRowCords]
       ][randomColumnCords] = this.emptySpace;
-
-      console.log(
-        this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard()[
-          boardRows[randomRowCords]
-        ][randomColumnCords]
-      );
     } else if (this.currentBoardAttackCoordinates === this.emptySpace) {
       this.updateGameStatusOnDisplay("Location already clicked");
     } else {
@@ -293,10 +275,8 @@ export class Display {
         .humanPlayerCurrentGameBoard()
         [boardRows[randomRowCords]][randomColumnCords].hit();
     }
-    console.log(this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard());
 
     this.updateGameStatusOnDisplay();
-    // this.humanPlayerRenderBoardToDisplay();
   }
 
   humanPlayerRenderBoardToDisplay() {
@@ -321,7 +301,10 @@ export class Display {
             rowOfHumanGameBoard
           ][i];
 
-        if (humanPlayerGameBoardCells !== null) {
+        if (
+          humanPlayerGameBoardCells !== null &&
+          humanPlayerGameBoardCells !== this.emptySpace
+        ) {
           elements[rowOfHumanGameBoard][i].textContent =
             humanPlayerGameBoardCells.shipName +
             " " +
@@ -331,10 +314,20 @@ export class Display {
             humanPlayerGameBoardCells.numberOfHits +
             " Sunk:" +
             humanPlayerGameBoardCells.shipSunk;
+
+          document
+            .querySelector(`#human${rowOfHumanGameBoard}${i}`)
+            .classList.add("shipsNotSunk");
+          if (humanPlayerGameBoardCells.shipSunk === true) {
+            console.log("Ship is Sunk");
+            document
+              .querySelector(`#human${rowOfHumanGameBoard}${i}`)
+              .classList.add("successfulAttacks");
+          }
         } else if (humanPlayerGameBoardCells === this.emptySpace) {
           document
-            .getElementById(elements[rowOfHumanGameBoard][i])
-            .classList.add("missedAttacks");
+            .querySelector(`#human${rowOfHumanGameBoard}${i}`)
+            .classList.add("emptySpace");
         } else {
           elements[rowOfHumanGameBoard][i].textContent = null;
         }
@@ -365,7 +358,8 @@ export class Display {
 
         if (
           aiPlayerGameBoardCells !== null &&
-          aiPlayerGameBoardCells !== this.emptySpace
+          aiPlayerGameBoardCells !== this.emptySpace &&
+          aiPlayerGameBoardCells.shipSunk === true
         ) {
           elements[rowOfAiGameBoard][i].textContent =
             aiPlayerGameBoardCells.shipName +

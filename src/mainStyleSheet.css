@@ -32,6 +32,10 @@ td {
   background-color: #1ad223;
 }
 
+.emptySpace {
+  background-color: #6060ea;
+}
+
 .missedAttacks {
   background-color: #252a31;
 }
