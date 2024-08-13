@@ -86,9 +86,5 @@ class Player {
       "J",
       this.getRndInteger(0, 6)
     );
-
-    // console.log(this.newShipAAi);
-    // console.log(this.newShipJAi);
-    // console.log(this.aiPlayerCurrentGameBoard());
   }
 }

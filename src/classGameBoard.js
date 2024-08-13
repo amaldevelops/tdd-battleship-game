@@ -3,18 +3,6 @@ export { Gameboard };
 class Gameboard {
   constructor() {
     this.board = this.createBoard();
-    // this.board={
-    //   A: [null, null, null, null, null, null, null, null, null, null],
-    //   B: [null, null, null, null, null, null, null, null, null, null],
-    //   C: [null, null, null, null, null, null, null, null, null, null],
-    //   D: [null, null, null, null, null, null, null, null, null, null],
-    //   E: [null, null, null, null, null, null, null, null, null, null],
-    //   F: [null, null, null, null, null, null, null, null, null, null],
-    //   G: [null, null, null, null, null, null, null, null, null, null],
-    //   H: [null, null, null, null, null, null, null, null, null, null],
-    //   I: [null, null, null, null, null, null, null, null, null, null],
-    //   J: [null, null, null, null, null, null, null, null, null, null],
-    // };
   }
 
   createBoard() {
@@ -40,7 +28,8 @@ class Gameboard {
 
     if (
       this.board[this.rowStartCords][this.columnStartCords] === null &&
-      this.board[this.rowStartCords][this.columnStartCords + this.ship.shipLength
+      this.board[this.rowStartCords][
+        this.columnStartCords + this.ship.shipLength
       ] === null &&
       this.columnStartCords + this.ship.shipLength <= 9 &&
       this.columnStartCords >= 0
@@ -68,7 +57,6 @@ class Gameboard {
 
   allShipsHealth() {
     this.shipCount = 10;
-    // this.shipCount;
     let sunkShipCount = new Set();
 
     for (const row of Object.values(this.board)) {

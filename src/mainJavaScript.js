@@ -1,14 +1,14 @@
 //This is the main JavaScript file
 
 /*
-Remaining Tasks
+Completed Tasks
 * Code for Ai player to make random choices on the Human Players game board
 * Code for game flow to hand over next turn to players
 * Code to monitor sunk ships of each player and announce winner when remaining ships == 0
 * Code to monitor Ai board in the console
 * Code to update Ai Player board with Human player clicked spots and disabling anymore clicks on the same spot
 * Code to show ai players sunk ships on the ai player board
-* Code to color the gameboard according to sunk ships(Red), active ships (Green) and clicked spot (Gray), use CSS classes to do this
+* Code to color the gameboard according to sunk ships(Red), active ships (Green) and clicked spot (Blue), use CSS classes to do this
 * CSS to make the game look nicer
 */
 

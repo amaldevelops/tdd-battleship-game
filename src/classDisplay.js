@@ -58,7 +58,6 @@ export class Display {
     } else if (!this.isHumanTurn) {
       this.aiPlayerGamePlay();
       this.humanPlayerRenderBoardToDisplay();
-      // this.humanPlayerRenderBoardToDisplay();
       this.isHumanTurn = true;
     }
 
@@ -290,7 +289,6 @@ export class Display {
         elements[boardRowNum][i] = document.querySelector(
           `#human${boardRowNum}${i}`
         );
-        // console.log(`#human${boardRowNum}${i}`)
       }
     }
 

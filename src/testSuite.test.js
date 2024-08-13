@@ -11,7 +11,6 @@
 //document.addEventListener('DOMContentLoaded', () => {});
 
 import { Ship, Gameboard, Player } from "./mainJavaScript"; // Class Imports
-// import { gameBoardHuman, gameBoardAi } from "./mainJavaScript"; //Class instance exports
 
 const gameBoardHuman = new Gameboard();
 const gameBoardAi = new Gameboard();
@@ -313,9 +312,6 @@ test("Test 19: This will test Human player and Computer GameBoard are created co
 });
 
 test("Test 20: This will test Human Player board with 10 ships placed according to the default coordinates", () => {
-  // console.log(gameBoardHumanTenShipsPlacedObject);
-  // console.log(gameBoardHuman.gameBoardStatus());
-
   expect(gameBoardHuman.gameBoardStatus()).toStrictEqual(
     gameBoardHumanTenShipsPlacedObject
   );

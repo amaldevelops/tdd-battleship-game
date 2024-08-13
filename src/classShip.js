@@ -1,9 +1,7 @@
 export { Ship };
 
 class Ship {
-  // static shipIDCounter = 0;
   constructor(shipName, shipLength) {
-    // this.shipID = Ship.shipIDCounter++;
     this.shipName = shipName;
     this.shipLength = shipLength;
     this.numberOfHits = 0;
