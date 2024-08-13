@@ -3,7 +3,9 @@ import { Gameboard } from "./classGameBoard";
 import { Player } from "./classPlayers";
 
 export class Display {
-  constructor() {}
+  constructor() {
+    this.isHumanTurn = true;
+  }
 
   getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
@@ -18,6 +20,7 @@ export class Display {
   }
 
   startGame() {
+    
     this.emptySpace = {
       shipName: "EMPTY",
       shipLength: "XXXX",
@@ -28,40 +31,40 @@ export class Display {
 
     document.addEventListener("DOMContentLoaded", () => {
       startGameButton.addEventListener("click", () => {
+        
+
         this.newPlayersHumanAndAi = new Player();
         this.humanPlayerShipsInitialPlacement();
         this.newPlayersHumanAndAi.aiPlayerInitialRandomShipPlacement();
-
-        // console.log(this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard());
-
-        // this.humanPlayerRenderBoardToDisplay();
         this.aiPlayerRenderBoardToDisplay();
         this.updateGameStatusOnDisplay("Yayy Game Started!");
         this.humanPlayerAiBoardClicks();
+
+        this.resetGame()
 
         this.gameLogic();
       });
     });
   }
 
+  resetGame()
+  {
+    const resetGameButton=document.querySelector("#resetGameButton");
+    resetGameButton.addEventListener("click",()=>{
+      window.location.reload();
+    });
+    
+  }
+
   gameLogic() {
-    let isHumanTurn = true;
-
-    while (
-      this.newPlayersHumanAndAi.humanPlayerGameBoard.allShipsHealth() !== 0 &&
-      this.newPlayersHumanAndAi.aiPlayerGameBoard.allShipsHealth() !== 0
-    ) {
-      this.updateGameStatusOnDisplay("Game On mate !");
-
-      if (isHumanTurn) {
-        this.humanPlayerGamePlay();
-        this.aiPlayerRenderBoardToDisplay();
-        isHumanTurn = false;
-      } else {
-        this.aiPlayerGamePlay();
-        this.humanPlayerRenderBoardToDisplay();
-        isHumanTurn = true;
-      }
+    if (this.isHumanTurn) {
+      this.humanPlayerGamePlay();
+      this.humanPlayerRenderBoardToDisplay();
+    } else if (!this.isHumanTurn) {
+      this.aiPlayerGamePlay();
+      this.humanPlayerRenderBoardToDisplay();
+      // this.humanPlayerRenderBoardToDisplay();
+      this.isHumanTurn = true;
     }
 
     // Check for game over conditions
@@ -230,10 +233,12 @@ export class Display {
           document.getElementById(target.id).classList.add("missedAttacks");
         } else if (this.currentBoardAttackCoordinates === this.emptySpace) {
           this.updateGameStatusOnDisplay("Location already clicked");
+
         } else {
           this.newPlayersHumanAndAi
             .aiPlayerCurrentGameBoard()
             [attackedCoordinates.letter][attackedCoordinates.number].hit();
+            document.getElementById(target.id).classList.add("successfulAttacks");
         }
         // console.log(this.newPlayersHumanAndAi.aiPlayerCurrentGameBoard());
 
@@ -243,19 +248,20 @@ export class Display {
     });
   }
   humanPlayerGamePlay() {
-    this.humanPlayerAiBoardClicks();
-    // let aiPlayerGameBoardTable = document.getElementById(
-    //   "aiPlayerGameBoardTable"
-    // );
+    // this.humanPlayerAiBoardClicks();
+    let aiPlayerGameBoardTable = document.getElementById(
+      "aiPlayerGameBoardTable"
+    );
 
-    // aiPlayerGameBoardTable.addEventListener("click", (event) => {
-    //   const target = event.target;
+    aiPlayerGameBoardTable.addEventListener("click", (event) => {
+      const target = event.target;
 
-    //   if (target.tagName === "TD") {
-    //     console.log("AI Turn");
-    //     return;
-    //   }
-    // });
+      if (target.tagName === "TD") {
+        console.log("AI Turn");
+        this.isHumanTurn = false;
+        this.gameLogic();
+      }
+    });
   }
 
   aiPlayerGamePlay() {
@@ -274,14 +280,6 @@ export class Display {
       this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard()[
         boardRows[randomRowCords]
       ][randomColumnCords] = this.emptySpace;
-
-      // document
-      //   .getElementById(
-      //     this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard()[
-      //       boardRows[randomRowCords]
-      //     ][randomColumnCords]
-      //   )
-      //   .classList.add("missedAttacks");
 
       console.log(
         this.newPlayersHumanAndAi.humanPlayerCurrentGameBoard()[
@@ -406,9 +404,5 @@ export class Display {
     AiPlayerSunkShips.textContent =
       "Ai currently remaining Ships: " +
       this.newPlayersHumanAndAi.aiPlayerGameBoard.allShipsHealth();
-
-    // console.dir(
-    //   this.newPlayersHumanAndAi.humanPlayerGameBoard.allShipsHealth()
-    // );
   }
 }
